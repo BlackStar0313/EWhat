@@ -1,5 +1,16 @@
 class MainScene extends egret.DisplayObjectContainer{
 	public static m_pThis: MainScene = null ; 
+
+	private m_width: number = 0 ; 
+	private m_height: number = 0 ; 
+
+	public set screenWidth(v:number) { this.m_width = v; }
+	public get screenWidth():number { return this.m_width;}
+
+	public set screenHeight(v:number) { this.m_height = v; }
+	public get screenHeight():number { return this.m_height;}
+
+
 	public static GetInstance(): MainScene {
 		if (MainScene.m_pThis == null) {
 			MainScene.m_pThis = new MainScene();
@@ -19,5 +30,15 @@ class MainScene extends egret.DisplayObjectContainer{
 		img.x = 0 ;
 		img.y = 0; 
 		this.addChild(img);
+
+
+		let imgCell: eui.Image = new eui.Image() ;
+		imgCell.source = "ba6_s1_png";
+		imgCell.x = this.screenWidth/2 ; 
+		imgCell.y = this.screenHeight/2 ; 
+		this.addChild(imgCell);
+
+		let items = DataManager.getInstance().GetItems();
+		console.log("dafdf" , items)
 	}
 }

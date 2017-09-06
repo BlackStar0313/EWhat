@@ -130,6 +130,8 @@ class Main extends eui.UILayer {
      */
     protected startCreateScene(): void {
        let mainscene: MainScene = MainScene.GetInstance();
+       mainscene.screenWidth = this.width;
+       mainscene.screenHeight = this.height;
        this.addChild(mainscene);
     }
 }
