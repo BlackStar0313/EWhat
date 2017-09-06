@@ -4,6 +4,8 @@ class MainScene extends egret.DisplayObjectContainer{
 	private m_width: number = 0 ; 
 	private m_height: number = 0 ; 
 
+	private m_randLayer: eui.Component = null ; 
+
 	public set screenWidth(v:number) { this.m_width = v; }
 	public get screenWidth():number { return this.m_width;}
 
@@ -25,20 +27,33 @@ class MainScene extends egret.DisplayObjectContainer{
 
 	private onAddToStage(): void {
 
-		let img: eui.Image = new eui.Image(); 
-		img.source = "bg_jpg";
-		img.x = 0 ;
-		img.y = 0; 
-		this.addChild(img);
+		// let img: eui.Image = new eui.Image(); 
+		// img.source = "bg_jpg";
+		// img.x = 0 ;
+		// img.y = 0; 
+		// this.addChild(img);
 
 
-		let imgCell: eui.Image = new eui.Image() ;
-		imgCell.source = "ba6_s1_png";
-		imgCell.x = this.screenWidth/2 ; 
-		imgCell.y = this.screenHeight/2 ; 
-		this.addChild(imgCell);
+		// let imgCell: eui.Image = new eui.Image() ;
+		// imgCell.source = "ba6_s1_png";
+		// imgCell.x = this.screenWidth/2 ; 
+		// imgCell.y = this.screenHeight/2 ; 
+		// this.addChild(imgCell);
 
-		let items = DataManager.getInstance().GetItems();
-		console.log("dafdf" , items)
+		// let items = DataManager.getInstance().GetItems();
+		// console.log("dafdf" , items)
+
+		let mask:egret.Shape = new egret.Shape();
+		mask.graphics.clear();
+		mask.graphics.beginFill(0x000000, 0.75);
+		mask.graphics.drawRect(0,0,egret.MainContext.instance.stage.stageWidth,egret.MainContext.instance.stage.stageHeight);
+		mask.graphics.endFill();
+		this.addChild(mask);
+
+
+		this.m_randLayer = new RandLayer();
+		this.addChild(this.m_randLayer);
 	}
+
+	
 }

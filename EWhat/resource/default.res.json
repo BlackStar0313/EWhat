@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,description_json,bingfu_png,dajingyanshu_png,damucaixiang_png,dapigexiang_png,daqianghuashixiang_png,dashitouxiang_png,dashiwuxiang_png,dashuzhixiang_png,datiekuaixiang_png,fubensaodangling_png,jianghun_png,jianghunsuipian_png,jianzaojiasuling_png,jinxiang_png,laba_png,mishujiasuling_png,mitanfu_png,muxiang_png,qianghuashi_png,qifuyu_png,shangdianshuaixnling_png,xiaojingyanshu_png,xiaomucaixiang_png,xiaoqianghuashixiang_png,xiaoshitouxiang_png,xiaoshiwuxiang_png,xiaoshuzhixiang_png,xiaotiekuaixiang_png,xiaopigexiang_png,yinxiang_png,zhaojiling_png,zhongjingyanshu_png,zhongmucaixiang_png,zhongpigexiang_png,zhongqianghuashixiang_png,zhongshitouxiang_png,zhongshiwuxiang_png,zhongshuzhixiang_png,zhongtiekuaixiang_png,ba6_s1_png,ba6_s2_png,ba6_s3_png,ba6_s4_png,ba6_s5_png,data_json",
+			"keys": "bg_jpg,description_json,bingfu_png,dajingyanshu_png,damucaixiang_png,dapigexiang_png,daqianghuashixiang_png,dashitouxiang_png,dashiwuxiang_png,dashuzhixiang_png,datiekuaixiang_png,fubensaodangling_png,jianghun_png,jianghunsuipian_png,jianzaojiasuling_png,jinxiang_png,laba_png,mishujiasuling_png,mitanfu_png,muxiang_png,qianghuashi_png,qifuyu_png,shangdianshuaixnling_png,xiaojingyanshu_png,xiaomucaixiang_png,xiaoqianghuashixiang_png,xiaoshitouxiang_png,xiaoshiwuxiang_png,xiaoshuzhixiang_png,xiaotiekuaixiang_png,xiaopigexiang_png,yinxiang_png,zhaojiling_png,zhongjingyanshu_png,zhongmucaixiang_png,zhongpigexiang_png,zhongqianghuashixiang_png,zhongshitouxiang_png,zhongshiwuxiang_png,zhongshuzhixiang_png,zhongtiekuaixiang_png,ba6_s1_png,ba6_s2_png,ba6_s3_png,ba6_s4_png,ba6_s5_png,data_json,btn27_s0_png,btn27_s1_png,btn27_s3_png,btn27_s2_png,btn27_s4_png,btn27_s5_png,btn27_s6_png,btn27_s7_png,btn27_s8_png,btn27_s9_png,btn27_s10_png,btn27_s11_png,btn27_s12_png,btn27_s13_png,ui_mask_png",
 			"name": "preload"
 		}
 	],
@@ -240,6 +240,91 @@
 			"url": "data.json",
 			"type": "json",
 			"name": "data_json"
+		},
+		{
+			"url": "assets/btn/btn27_s0.png",
+			"type": "image",
+			"name": "btn27_s0_png"
+		},
+		{
+			"url": "assets/btn/btn27_s1.png",
+			"type": "image",
+			"name": "btn27_s1_png"
+		},
+		{
+			"url": "assets/btn/btn27_s3.png",
+			"type": "image",
+			"name": "btn27_s3_png"
+		},
+		{
+			"url": "assets/btn/btn27_s2.png",
+			"type": "image",
+			"name": "btn27_s2_png"
+		},
+		{
+			"url": "assets/btn/btn27_s4.png",
+			"type": "image",
+			"name": "btn27_s4_png"
+		},
+		{
+			"url": "assets/btn/btn27_s5.png",
+			"type": "image",
+			"name": "btn27_s5_png"
+		},
+		{
+			"url": "assets/btn/btn27_s6.png",
+			"type": "image",
+			"name": "btn27_s6_png"
+		},
+		{
+			"url": "assets/btn/btn27_s7.png",
+			"type": "image",
+			"name": "btn27_s7_png"
+		},
+		{
+			"url": "assets/btn/btn27_s8.png",
+			"type": "image",
+			"name": "btn27_s8_png"
+		},
+		{
+			"url": "assets/btn/btn27_s9.png",
+			"type": "image",
+			"name": "btn27_s9_png"
+		},
+		{
+			"url": "assets/btn/btn27_s10.png",
+			"type": "image",
+			"name": "btn27_s10_png"
+		},
+		{
+			"url": "assets/btn/btn27_s11.png",
+			"type": "image",
+			"name": "btn27_s11_png"
+		},
+		{
+			"url": "assets/btn/btn27_s12.png",
+			"type": "image",
+			"name": "btn27_s12_png"
+		},
+		{
+			"url": "assets/btn/btn27_s13.png",
+			"type": "image",
+			"name": "btn27_s13_png"
+		},
+		{
+			"url": "assets/ui/bg1.png",
+			"type": "image",
+			"name": "bg1_png"
+		},
+		{
+			"url": "assets/ui/title1.png",
+			"type": "image",
+			"name": "title1_png"
+		},
+		{
+			"url": "assets/ui/ui_mask.png",
+			"type": "image",
+			"name": "ui_mask_png"
 		}
 	]
 }

@@ -3,5 +3,10 @@
         "path": "game/RandLayer.ts",
         "class": "RandLayer",
         "parentPath": ""
+    },
+    "15e57a6e93f": {
+        "path": "game/cell/RandCell.ts",
+        "class": "RandCell",
+        "parentPath": ""
     }
 }
