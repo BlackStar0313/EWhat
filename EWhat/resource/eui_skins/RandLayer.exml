@@ -2,7 +2,7 @@
 <e:Skin class="RandLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15e579e37ea" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
-		<e:DataGroup id="group_goods" width="696.97" height="969.7" x="24.52" y="163.42" anchorOffsetX="0" anchorOffsetY="0"/>
+		<e:DataGroup id="group_goods" width="640" height="969.7" x="55" y="163.42" anchorOffsetX="0" anchorOffsetY="0"/>
 		<e:Button id="btn_start" label="start" x="295.01" y="50">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">

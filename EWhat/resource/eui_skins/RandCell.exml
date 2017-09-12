@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="RandCellSkin" width="200" height="200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+<e:Skin class="RandCellSkin" width="160" height="160" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15e57a6e93f" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
-		<e:Image id="img_bg" source="ba6_s1_png" x="0" y="0" width="200" height="200"/>
-		<e:Image id="img_goods" source="bingfu_png" horizontalCenter="-1" verticalCenter="-5" touchEnabled="false"/>
-		<e:Label id="label_name" text="Label" y="159" horizontalCenter="0" stroke="3" touchEnabled="false"/>
+		<e:Image id="img_bg" source="ba6_s1_png" x="0" y="0" width="160" height="160"/>
+		<e:Image id="img_goods" source="bingfu_png" touchEnabled="false" x="0" y="0" width="160" height="160"/>
+		<e:Label id="label_name" text="Label" y="120" horizontalCenter="0" stroke="3" touchEnabled="false"/>
 		<e:Image id="img_mask" source="ui_mask_png" left="0" right="0" top="0" bottom="0" touchEnabled="false"/>
 	</e:Group>
 </e:Skin>

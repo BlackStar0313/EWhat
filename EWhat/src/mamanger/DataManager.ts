@@ -10,6 +10,8 @@ interface RawData {
 class DataManager {
     private _dataItem:{[name:number]:ItemData} = {};
 
+	private c_maxGoodsNum: number = 4*5;  
+
 
     public static _ins:DataManager = null;
     
@@ -30,6 +32,30 @@ class DataManager {
 
     public GetItems(): { [idx: number ]: ItemData } {
         return this._dataItem; 
+    }
+
+    public GetRandShowItems(): { [idx: number ]: ItemData } {
+        let goodsItems: Array<ItemData> = [] ; 
+        for (let key in this._dataItem) {
+            goodsItems.push(this._dataItem[key]) ; 
+        } 
+        
+        let randItems: { [idx: number ]: ItemData } = {} ; 
+        let num: number = 0 ; 
+        for (let i = goodsItems.length ; goodsItems.length > 0 ; -- i ) {
+            let rand: number = Math.floor(Math.random() * goodsItems.length) ;
+            randItems[goodsItems[rand].key] = goodsItems[rand];
+            goodsItems.splice(rand , 1);
+            ++num;
+
+            if (num >= this.c_maxGoodsNum) {
+                break;
+            }
+        }
+        
+        goodsItems = []  ;
+
+        return randItems;
     }
 
     private init():void

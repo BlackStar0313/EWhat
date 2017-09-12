@@ -3,7 +3,8 @@ public group_goods:eui.DataGroup;
 public btn_start:eui.Button;
 
 	private m_goodsList: Array<ItemData> = [] ; 
-	private m_randTimer: egret.Timer = null ; 
+	private m_randTimer: egret.Timer = null ;
+	private m_isFirstTime: boolean = true ; 
 
 	public constructor() {
 		super();
@@ -24,10 +25,11 @@ public btn_start:eui.Button;
 
 	private init(): void {
 		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+		this.RefreshShow();
+	}
 
-
-
-		let goodsData:{ [idx: number ]: ItemData } = DataManager.getInstance().GetItems();
+	public RefreshShow(): void {
+		let goodsData:{ [idx: number ]: ItemData } = DataManager.getInstance().GetRandShowItems();
 
 
 		let layout: eui.TileLayout = new eui.TileLayout(); 
@@ -35,9 +37,9 @@ public btn_start:eui.Button;
 		// layout.rowAlign = eui.RowAlign.JUSTIFY_USING_HEIGHT ; 
 		layout.horizontalAlign = egret.HorizontalAlign.CENTER;
 		layout.verticalAlign = egret.VerticalAlign.TOP;
-		layout.verticalGap = 20;
-		layout.horizontalGap = 20;
-		layout.requestedColumnCount = 3 ;
+		layout.verticalGap = 0;
+		layout.horizontalGap = 0;
+		layout.requestedColumnCount = 4 ;
 		this.group_goods.layout = layout ; 
 
 		let dataProvider:eui.ArrayCollection = new eui.ArrayCollection();
@@ -50,6 +52,13 @@ public btn_start:eui.Button;
 
 		this.group_goods.itemRenderer = RandCell;
 		this.group_goods.dataProvider = dataProvider;
+
+
+		this.m_goodsList = []; 
+		for (let key in goodsData) {
+			let goods: ItemData = goodsData[key];
+			this.m_goodsList.push(goods);
+		}
 	}
 
 	public handleTouch(event:egret.Event):void
@@ -58,19 +67,20 @@ public btn_start:eui.Button;
 		{
 			case this.btn_start:
 			{
+				if (this.m_isFirstTime) {
+					this.m_isFirstTime = false ; 
+					this.startRandTimer();
+					return ;
+				} 
+
 				if (this.m_randTimer) {
 					return ; 
 				}
 
 				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.RESTART) ;
 
-				this.m_goodsList = []; 
-				let goodsData:{ [idx: number ]: ItemData } = DataManager.getInstance().GetItems();
-				for (let key in goodsData) {
-					let goods: ItemData = goodsData[key];
-					this.m_goodsList.push(goods);
-				}
 
+				this.RefreshShow();
 				this.startRandTimer();
 				break;
 			}
