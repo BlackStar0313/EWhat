@@ -1146,9 +1146,6 @@ var egret;
          * @language zh_CN
          */
         Tween.prototype.setPaused = function (value) {
-            if (this.paused == value) {
-                return this;
-            }
             this.paused = value;
             Tween._register(this, !value);
             return this;

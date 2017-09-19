@@ -2,12 +2,12 @@
 <e:Skin class="RandLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15e579e37ea" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
-		<e:DataGroup id="group_goods" width="640" height="969.7" x="55" y="163.42" anchorOffsetX="0" anchorOffsetY="0"/>
-		<e:Button id="btn_start" label="start" x="295.01" y="50">
+		<e:DataGroup id="group_goods" width="640" height="800" x="55" y="71.03" anchorOffsetX="0" anchorOffsetY="0"/>
+		<e:Button id="btn_start" label="EWhat?" x="243" y="902">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				<e:Image width="100%" height="100%" source="btn_random_on_png" source.down="btn_random_off_png" source.disabled="btn_random_off_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"/>
 				</e:Skin>
 			</e:skinName>
 		</e:Button>

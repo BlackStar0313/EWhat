@@ -1,9 +1,14 @@
 class RandCell extends eui.ItemRenderer {
+public group_arm:eui.Group;
 public img_bg:eui.Image;
 public img_goods:eui.Image;
 public label_name:eui.Label;
 public img_mask:eui.Image;
 
+
+	private m_goodsArm: dragonBones.Armature = null ; 
+	private m_curStartArmName: string = "";
+	private m_curStopArmName: string = "";
 
 
 	public constructor() {
@@ -27,29 +32,68 @@ public img_mask:eui.Image;
 		this.img_bg.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		NotifyCenter.getInstance().addEventListener(LocalEvents.CLOSE_ITEM  , this.closeItem , this );
 		NotifyCenter.getInstance().addEventListener(LocalEvents.RESTART , this.restart , this );
+		NotifyCenter.getInstance().addEventListener(LocalEvents.FIRST_TIME_RUN , this.restart , this );
+
+		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.RESTART , this.restart , this );
+			NotifyCenter.getInstance().addEventListener(LocalEvents.CLOSE_ITEM  , this.closeItem , this );
+		}, this);
 		this.img_mask.visible = false; 
 	}
 
 	protected dataChanged(): void {
 		let item: ItemData = this.data.item; 
 
-		this.img_bg.source = item.data.bgImg ; 
-		this.img_goods.source = item.data.icon ; 
+		// this.img_bg.source = item.data.bgImg ; 
+		// this.img_goods.source = item.data.icon ; 
 		this.label_name.text = item.data.name ; 
+
+
+		if (!this.m_goodsArm) {
+			this.randArmNam();
+
+			this.m_goodsArm = DragonBonesManager.GetInstance().createDragoneBonesAramture(DragonbonesEnum.btn);
+			this.group_arm.addChildAt(this.m_goodsArm.getDisplay() , 1);  
+			this.m_goodsArm.display.x = this.group_arm.x + this.group_arm.width/2; 
+			this.m_goodsArm.display.y = this.group_arm.y + this.group_arm.height/2; 
+			this.m_goodsArm.animation.play(this.m_curStartArmName );
+			DragonBonesManager.GetInstance().AddArmInWorldClock(this.m_goodsArm);
+
+			if (UserCenter.getInstance().isFirstTimeIn) {
+				this.m_goodsArm.animation.play(this.m_curStopArmName);
+			}
+
+		}
 	}
 
 	private closeItem(evt:egret.Event): void {
 		let id: number = evt.data.id ; 
 		let item: ItemData = this.data.item; 
 		if (id == item.data.idx) {
-			this.img_mask.visible = true ; 
+			// this.img_mask.visible = true ; 
+			this.m_goodsArm.animation.stop();
+			this.m_goodsArm.animation.play(this.m_curStopArmName);
+			DragonBonesManager.GetInstance().AddArmInWorldClock(this.m_goodsArm);
 		}
 	}
 
 	private restart(evt: egret.Event): void {
-		this.img_mask.visible = false; 
+		this.m_goodsArm.animation.stop();
+		this.m_goodsArm.animation.play(this.m_curStartArmName);
+		DragonBonesManager.GetInstance().AddArmInWorldClock(this.m_goodsArm);
+	}
+
+	private firstTimeRun(evt:egret.Event): void {
+		this.m_goodsArm.animation.play(this.m_curStartArmName);
+		DragonBonesManager.GetInstance().AddArmInWorldClock(this.m_goodsArm);
 	}
 	
+	//test code 
+	private randArmNam(): void {
+		let rand: number = Math.floor(Math.random()* 2);
+		this.m_curStartArmName = rand == 1 ? DragonBonesManager.STR_ARM_BTN1_JUMP : DragonBonesManager.STR_ARM_BTN2_JUMP;
+		this.m_curStopArmName = rand == 1 ? DragonBonesManager.STR_ARM_BTN1_STOP : DragonBonesManager.STR_ARM_BTN2_STOP;
+	}
 
 	public handleTouch(event:egret.Event):void
 	{ 

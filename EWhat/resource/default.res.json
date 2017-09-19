@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,description_json,bingfu_png,dajingyanshu_png,damucaixiang_png,dapigexiang_png,daqianghuashixiang_png,dashitouxiang_png,dashiwuxiang_png,dashuzhixiang_png,datiekuaixiang_png,fubensaodangling_png,jianghun_png,jianghunsuipian_png,jianzaojiasuling_png,jinxiang_png,laba_png,mishujiasuling_png,mitanfu_png,muxiang_png,qianghuashi_png,qifuyu_png,shangdianshuaixnling_png,xiaojingyanshu_png,xiaomucaixiang_png,xiaoqianghuashixiang_png,xiaoshitouxiang_png,xiaoshiwuxiang_png,xiaoshuzhixiang_png,xiaotiekuaixiang_png,xiaopigexiang_png,yinxiang_png,zhaojiling_png,zhongjingyanshu_png,zhongmucaixiang_png,zhongpigexiang_png,zhongqianghuashixiang_png,zhongshitouxiang_png,zhongshiwuxiang_png,zhongshuzhixiang_png,zhongtiekuaixiang_png,ba6_s1_png,ba6_s2_png,ba6_s3_png,ba6_s4_png,ba6_s5_png,data_json,btn27_s0_png,btn27_s1_png,btn27_s3_png,btn27_s2_png,btn27_s4_png,btn27_s5_png,btn27_s6_png,btn27_s7_png,btn27_s8_png,btn27_s9_png,btn27_s10_png,btn27_s11_png,btn27_s12_png,btn27_s13_png,ui_mask_png",
+			"keys": "bg_jpg,description_json,bingfu_png,dajingyanshu_png,damucaixiang_png,dapigexiang_png,daqianghuashixiang_png,dashitouxiang_png,dashiwuxiang_png,dashuzhixiang_png,datiekuaixiang_png,fubensaodangling_png,jianghun_png,jianghunsuipian_png,jianzaojiasuling_png,jinxiang_png,laba_png,mishujiasuling_png,mitanfu_png,muxiang_png,qianghuashi_png,qifuyu_png,shangdianshuaixnling_png,xiaojingyanshu_png,xiaomucaixiang_png,xiaoqianghuashixiang_png,xiaoshitouxiang_png,xiaoshiwuxiang_png,xiaoshuzhixiang_png,xiaotiekuaixiang_png,xiaopigexiang_png,yinxiang_png,zhaojiling_png,zhongjingyanshu_png,zhongmucaixiang_png,zhongpigexiang_png,zhongqianghuashixiang_png,zhongshitouxiang_png,zhongshiwuxiang_png,zhongshuzhixiang_png,zhongtiekuaixiang_png,ba6_s1_png,ba6_s2_png,ba6_s3_png,ba6_s4_png,ba6_s5_png,data_json,btn27_s0_png,btn27_s1_png,btn27_s3_png,btn27_s2_png,btn27_s4_png,btn27_s5_png,btn27_s6_png,btn27_s7_png,btn27_s8_png,btn27_s9_png,btn27_s10_png,btn27_s11_png,btn27_s12_png,btn27_s13_png,ui_mask_png,db_evolve_burn_tex_png,db_evolve_burn_ske_json,db_btn_tex_json,db_btn_ske_json,db_btn_tex_png,db_evolve_burn_tex_json,btn_random_off_png,btn_random_on_png",
 			"name": "preload"
 		}
 	],
@@ -325,6 +325,46 @@
 			"url": "assets/ui/ui_mask.png",
 			"type": "image",
 			"name": "ui_mask_png"
+		},
+		{
+			"url": "assets/dragonbones/db_evolve_burn/db_evolve_burn_tex.png",
+			"type": "image",
+			"name": "db_evolve_burn_tex_png"
+		},
+		{
+			"url": "assets/dragonbones/db_evolve_burn/db_evolve_burn_ske.json",
+			"type": "json",
+			"name": "db_evolve_burn_ske_json"
+		},
+		{
+			"url": "assets/dragonbones/db_evolve_burn/db_evolve_burn_tex.json",
+			"type": "json",
+			"name": "db_evolve_burn_tex_json"
+		},
+		{
+			"url": "assets/dragonbones/db_btn/db_btn_tex.png",
+			"type": "image",
+			"name": "db_btn_tex_png"
+		},
+		{
+			"url": "assets/dragonbones/db_btn/db_btn_tex.json",
+			"type": "json",
+			"name": "db_btn_tex_json"
+		},
+		{
+			"url": "assets/dragonbones/db_btn/db_btn_ske.json",
+			"type": "json",
+			"name": "db_btn_ske_json"
+		},
+		{
+			"url": "assets/ui/btn_random_off.png",
+			"type": "image",
+			"name": "btn_random_off_png"
+		},
+		{
+			"url": "assets/ui/btn_random_on.png",
+			"type": "image",
+			"name": "btn_random_on_png"
 		}
 	]
 }

@@ -2845,9 +2845,7 @@ var egret;
             function onLoadComplete(e) {
                 removeListeners();
                 var bitmapData = imageLoader.data;
-                if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
-                    bitmapData.source.setAttribute("bitmapSrc", virtualUrl);
-                }
+                bitmapData.source.setAttribute("bitmapSrc", virtualUrl);
                 var texture = new egret.Texture();
                 texture._setBitmapData(bitmapData);
                 loader.data = texture;

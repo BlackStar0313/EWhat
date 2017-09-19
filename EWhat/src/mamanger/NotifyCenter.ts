@@ -3,6 +3,7 @@
 class LocalEvents {
     public static CLOSE_ITEM = "close_item";     //淘汰一个Item
     public static RESTART = "restart";           //重新开始
+    public static FIRST_TIME_RUN = "first_time_run";    //进入游戏后第一次开始
 }
 
 

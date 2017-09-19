@@ -13396,10 +13396,10 @@ declare namespace egret {
 declare namespace egret {
     /**
     * @language en_US
-    * The Base64Util class provides methods for encoding and decoding base64.
+    * The ByteArray class provides methods for encoding and decoding base64.
     * @version Egret 2.4
     * @platform Web,Native
-    * @includeExample egret/utils/Base64Util.ts
+    * @includeExample egret/utils/ByteArray.ts
     */
     /**
      * @language zh_CN

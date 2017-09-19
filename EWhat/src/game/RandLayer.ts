@@ -4,7 +4,6 @@ public btn_start:eui.Button;
 
 	private m_goodsList: Array<ItemData> = [] ; 
 	private m_randTimer: egret.Timer = null ;
-	private m_isFirstTime: boolean = true ; 
 
 	public constructor() {
 		super();
@@ -30,6 +29,9 @@ public btn_start:eui.Button;
 
 	public RefreshShow(): void {
 		let goodsData:{ [idx: number ]: ItemData } = DataManager.getInstance().GetRandShowItems();
+
+		if (this.group_goods.dataProvider) 
+			(<eui.ArrayCollection>this.group_goods.dataProvider).removeAll();
 
 
 		let layout: eui.TileLayout = new eui.TileLayout(); 
@@ -67,8 +69,9 @@ public btn_start:eui.Button;
 		{
 			case this.btn_start:
 			{
-				if (this.m_isFirstTime) {
-					this.m_isFirstTime = false ; 
+				if (UserCenter.getInstance().isFirstTimeIn) {
+					UserCenter.getInstance().isFirstTimeIn = false ; 
+					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.RESTART) ;
 					this.startRandTimer();
 					return ;
 				} 
@@ -77,7 +80,6 @@ public btn_start:eui.Button;
 					return ; 
 				}
 
-				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.RESTART) ;
 
 
 				this.RefreshShow();
@@ -98,15 +100,18 @@ public btn_start:eui.Button;
 			return ; 
 		}
 
+
+
 		this.m_randTimer = new egret.Timer(1000 , 1);
 		let self = this ; 
 		this.m_randTimer.addEventListener(egret.TimerEvent.TIMER, ()=> { 
 			let randId: number = Math.floor(Math.random() * this.m_goodsList.length)  ; 
 			NotifyCenter.getInstance().dispatchEventWith( LocalEvents.CLOSE_ITEM , false, {
-				id: this.m_goodsList[randId].data.idx 
+				id: self.m_goodsList[randId].data.idx 
 			} );
-			this.m_goodsList.splice(randId, 1) ;
-			this.startRandTimer();
+			self.m_goodsList.splice(randId, 1) ;
+			self.m_randTimer = null ; 
+			self.startRandTimer();
 		}
 		,this ) ;
 		this.m_randTimer.start(); 
