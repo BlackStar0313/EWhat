@@ -1,4 +1,4 @@
-class RandCell extends eui.ItemRenderer {
+class RandCell extends BasicItemRenderer {
 public group_arm:eui.Group;
 public img_bg:eui.Image;
 public img_goods:eui.Image;

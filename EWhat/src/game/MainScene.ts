@@ -4,7 +4,7 @@ class MainScene extends egret.DisplayObjectContainer{
 	private m_width: number = 0 ; 
 	private m_height: number = 0 ; 
 
-	private m_randLayer: eui.Component = null ; 
+	private m_randLayer: BasicLayer = null ; 
 
 	public set screenWidth(v:number) { this.m_width = v; }
 	public get screenWidth():number { return this.m_width;}
@@ -22,11 +22,11 @@ class MainScene extends egret.DisplayObjectContainer{
 
 	public constructor() {
 		super();
+		LayerManager.GetInstance().initScene(this);
 		this.once(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 	}
 
 	private onAddToStage(): void {
-
 		// let img: eui.Image = new eui.Image(); 
 		// img.source = "bg_jpg";
 		// img.x = 0 ;
@@ -52,7 +52,7 @@ class MainScene extends egret.DisplayObjectContainer{
 
 
 		this.m_randLayer = new RandLayer();
-		this.addChild(this.m_randLayer);
+		LayerManager.GetInstance().pushLayer(this.m_randLayer, LAYER_TYPE.BasicUIlayer);
 	}
 
 	

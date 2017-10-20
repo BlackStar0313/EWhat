@@ -1,4 +1,4 @@
-class RandLayer extends eui.Component implements  eui.UIComponent {
+class RandLayer extends BasicLayer {
 public group_goods:eui.DataGroup;
 public btn_start:eui.Button;
 
