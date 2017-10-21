@@ -14,11 +14,15 @@
     "eui.VSlider": "resource/eui_skins/VSliderSkin.exml",
     "eui.ItemRenderer": "resource/eui_skins/ItemRendererSkin.exml",
     "RandLayer": "resource/eui_skins/RandLayer.exml",
-    "RandCell": "resource/eui_skins/RandCell.exml"
+    "RandCell": "resource/eui_skins/RandCell.exml",
+    "EditShopLayer": "resource/eui_skins/EditShopLayer.exml",
+    "ShopPoolLayer": "resource/eui_skins/ShopPoolLayer.exml"
   },
   "autoGenerateExmlsList": true,
   "exmls": [
+    "resource/eui_skins/EditShopLayer.exml",
     "resource/eui_skins/RandCell.exml",
-    "resource/eui_skins/RandLayer.exml"
+    "resource/eui_skins/RandLayer.exml",
+    "resource/eui_skins/ShopPoolLayer.exml"
   ]
 }

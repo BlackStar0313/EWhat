@@ -11,5 +11,13 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
+		<e:Button id="btn_config" label="" x="687" y="3">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn_config_png" source.down="btn_config_s1_png" source.disabled="btn_config_s1_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
 	</e:Group>
 </e:Skin>

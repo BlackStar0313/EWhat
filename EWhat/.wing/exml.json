@@ -8,5 +8,15 @@
         "path": "game/cell/RandCell.ts",
         "class": "RandCell",
         "parentPath": ""
+    },
+    "15f3da3ec92": {
+        "path": "game/EditShopLayer.ts",
+        "class": "EditShopLayer",
+        "parentPath": ""
+    },
+    "15f3dd9e63e": {
+        "path": "game/ShopPoolLayer.ts",
+        "class": "ShopPoolLayer",
+        "parentPath": ""
     }
 }

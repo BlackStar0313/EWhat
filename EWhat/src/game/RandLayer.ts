@@ -1,6 +1,9 @@
 class RandLayer extends BasicLayer {
 public group_goods:eui.DataGroup;
 public btn_start:eui.Button;
+public btn_config:eui.Button;
+;
+
 
 	private m_goodsList: Array<ItemData> = [] ; 
 	private m_randTimer: egret.Timer = null ;
@@ -24,6 +27,7 @@ public btn_start:eui.Button;
 
 	private init(): void {
 		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+		this.btn_config.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.RefreshShow();
 	}
 
@@ -84,6 +88,13 @@ public btn_start:eui.Button;
 
 				this.RefreshShow();
 				this.startRandTimer();
+				break;
+			}
+
+			case this.btn_config: 
+			{
+				let layer: ShopPoolLayer = new ShopPoolLayer();
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;
 			}
 			default:
