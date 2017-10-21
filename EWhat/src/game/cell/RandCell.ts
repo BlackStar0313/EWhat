@@ -91,8 +91,8 @@ public img_mask:eui.Image;
 	//test code 
 	private randArmNam(): void {
 		let rand: number = Math.floor(Math.random()* 2);
-		this.m_curStartArmName = rand == 1 ? DragonBonesManager.STR_ARM_BTN1_JUMP : DragonBonesManager.STR_ARM_BTN2_JUMP;
-		this.m_curStopArmName = rand == 1 ? DragonBonesManager.STR_ARM_BTN1_STOP : DragonBonesManager.STR_ARM_BTN2_STOP;
+		this.m_curStartArmName = rand == 1 ? DragonBonesConfig.STR_ARM_BTN1_JUMP : DragonBonesConfig.STR_ARM_BTN2_JUMP;
+		this.m_curStopArmName = rand == 1 ? DragonBonesConfig.STR_ARM_BTN1_STOP : DragonBonesConfig.STR_ARM_BTN2_STOP;
 	}
 
 	public handleTouch(event:egret.Event):void

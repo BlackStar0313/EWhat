@@ -12,15 +12,16 @@ var game_file_list = [
 	"polyfill/promise.js",
 	"bin-debug/utils/BasicItemRenderer.js",
 	"bin-debug/utils/BasicLayer.js",
-	"bin-debug/Main.js",
+	"bin-debug/mamanger/DataManager.js",
 	"bin-debug/data/ItemData.js",
 	"bin-debug/game/cell/RandCell.js",
 	"bin-debug/game/MainScene.js",
 	"bin-debug/game/RandLayer.js",
 	"bin-debug/game/UserCenter.js",
 	"bin-debug/LoadingUI.js",
-	"bin-debug/utils/GameLayerActionHelper.js",
-	"bin-debug/mamanger/DataManager.js",
+	"bin-debug/Main.js",
+	"bin-debug/Constants.js",
+	"bin-debug/mamanger/DragonBonesConfig.js",
 	"bin-debug/mamanger/DragonBonesManager.js",
 	"bin-debug/mamanger/LayerManager.js",
 	"bin-debug/mamanger/NotifyCenter.js",
@@ -28,7 +29,7 @@ var game_file_list = [
 	"bin-debug/ThemeAdapter.js",
 	"bin-debug/AssetAdapter.js",
 	"bin-debug/data/interface/ItemDataInterface.js",
-	"bin-debug/Constants.js",
+	"bin-debug/utils/GameLayerActionHelper.js",
 	//----auto game_file_list end----
 ];
 

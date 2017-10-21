@@ -1,39 +1,10 @@
-enum DragonbonesEnum {
-	btn = 0 , 
-	ball 
-}
-
-type DragonbonesTextureData = {
-	db_json : string , 
-	db_texture_json: string , 
-	db_texture_png: string 
-}
-
+/**
+ * @brief dragonbones 使用封装类
+ *  需要配合dragonBonesConfig一起使用
+ */
 class DragonBonesManager {
     private static m_pThis:DragonBonesManager = null;
 	private m_cout:number ;
-
-
-	//填写对应配置文件信息，由DragonbonesEnum直接取信息值
-	private m_dbTextureInfoArray: Array<DragonbonesTextureData> = [
-		{ db_json: "db_btn_ske_json" , db_texture_json: "db_btn_tex_json" , db_texture_png: "db_btn_tex_png"} ,
-		{ db_json: "db_evolve_burn_ske_json" , db_texture_json: "db_evolve_burn_tex_json" , db_texture_png: "db_evolve_burn_tex_png"}  
-	]
-
-	//具体动画名字部分
-    public static STR_ARM_BTN1_JUMP: string = "btn1_jump";
-	public static STR_ARM_BTN1_STOP: string = "btn1_stop";
-	public static STR_ARM_BTN2_JUMP: string = "btn2_jump";
-	public static STR_ARM_BTN2_STOP: string = "btn2_stop";
-
-	public static STR_EVOLVE_BURN:string = "burn";
-
-
-
-	public static STR_ARMATURE_DEFAULT_NAME: string = "Armature" ; 
-
-
-	public static STR_GROUP_RES_NAME: string = "animation";
 
 	private m_loadGroupTarget: any = null ; 
 	private m_loadGroupFunc: Function = null ; 
@@ -53,14 +24,14 @@ class DragonBonesManager {
     /* 如果需要增加创建出来的armature的事件，那么返回的armature里进行操作 */
     //http://developer.egret.com/cn/github/egret-docs/DB/dbLibs/events/index.html
     // armamture 的显示相关都操作 armature下的display
-	public createDragoneBonesAramture(dbIndex: DragonbonesEnum, armatureName: string = DragonBonesManager.STR_ARMATURE_DEFAULT_NAME, eventObj: any = null , frameCallBackFunc: Function = null , completeCallBackFunc: Function = null , loopCompleteCallBack: Function = null ) :dragonBones.Armature {
+	public createDragoneBonesAramture(dbIndex: DragonbonesEnum, armatureName: string = DragonBonesConfig.STR_ARMATURE_DEFAULT_NAME, eventObj: any = null , frameCallBackFunc: Function = null , completeCallBackFunc: Function = null , loopCompleteCallBack: Function = null ) :dragonBones.Armature {
 		// this.m_cout += 1;
 		// egret.log("~~~~~~   createDragoneBonesAramture~~" + this.m_cout);
 
 		//init dragonbones 
         // egret.log(dragonBones.DragonBonesData);
 
-        let dbTextureInfo: DragonbonesTextureData = this.m_dbTextureInfoArray[dbIndex] ; 
+        let dbTextureInfo: DragonbonesTextureData = DragonBonesConfig.DbTextureInfoArray[dbIndex] ; 
 
         let dragonebonesData = RES.getRes(dbTextureInfo.db_json);
         let textureData = RES.getRes(dbTextureInfo.db_texture_json); 
