@@ -133,5 +133,7 @@ class Main extends eui.UILayer {
        mainscene.screenWidth = this.width;
        mainscene.screenHeight = this.height;
        this.addChild(mainscene);
+
+       UserCenter.getInstance().InitUser();
     }
 }
