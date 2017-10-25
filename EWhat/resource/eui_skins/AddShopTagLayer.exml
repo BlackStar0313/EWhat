@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="AddShopTagLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f5416a998" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Label text="添加店铺标签" y="85.67" horizontalCenter="0"/>
+		<e:Label text="标签" y="216" textAlign="center" anchorOffsetX="0" width="157.33" size="50" horizontalCenter="-0.5"/>
+		<e:Button id="btn_next" label="下一步" x="494.5" y="1048">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Button id="btn_before" label="上一步" x="87" y="1048">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btn_close" label="" x="626.5" y="42">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Scroller id="scroller_tag" width="676" height="684" x="32" y="304" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Group>
+				<e:List id="list_tag" width="0" height="0" x="0" y="0"/>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+</e:Skin>

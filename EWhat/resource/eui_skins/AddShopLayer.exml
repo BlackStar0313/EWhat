@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="AddShopLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f53d471d2" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Label text="添加店铺" y="85.67" horizontalCenter="0"/>
+		<e:Label text="店名" x="61" y="364" textAlign="right" anchorOffsetX="0" width="157.33" size="50"/>
+		<e:Button id="btn_next" label="下一步" x="297" y="924">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btn_close" label="" x="626.5" y="42">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:EditableText id="edit_name" width="382" height="64" text="输入店名" x="280" y="364" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle"/>
+	</e:Group>
+</e:Skin>

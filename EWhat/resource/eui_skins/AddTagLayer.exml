@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="AddTagLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f53f80191" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Label text="添加标签" y="85.67" horizontalCenter="0"/>
+		<e:Label text="标签名" x="71" y="244" textAlign="right" anchorOffsetX="0" width="157.33" size="50"/>
+		<e:Button id="btn_add" label="添加" x="297" y="1046">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Button id="btn_close" label="" x="626.5" y="42">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:EditableText id="edit_name" width="382" height="64" text="输入标签" x="288" y="237" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle"/>
+		<e:Label text="标签图标" x="71" y="434" size="40"/>
+		<e:Scroller id="scroller_tag" width="654" height="486" x="48" y="512" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Group>
+				<e:List id="list_tag" x="0"/>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+</e:Skin>

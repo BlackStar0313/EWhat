@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="TagCellSkin" width="100" height="100" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f5408111f" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image id="img_tag" source="btn_random_on_png" x="17.5" y="0" anchorOffsetX="0" width="65" anchorOffsetY="0" height="66" scaleX="1" scaleY="1"/>
+		<e:Label id="label_name" text="辛辣" x="11" y="80" anchorOffsetX="0" width="78" size="20" textAlign="center" scaleX="1" scaleY="1"/>
+	</e:Group>
+</e:Skin>
