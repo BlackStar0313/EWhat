@@ -4,5 +4,6 @@
 	<e:Group left="0" right="0" top="0" bottom="0">
 		<e:Image id="img_tag" source="btn_random_on_png" x="17.5" y="0" anchorOffsetX="0" width="65" anchorOffsetY="0" height="66" scaleX="1" scaleY="1"/>
 		<e:Label id="label_name" text="辛辣" x="11" y="80" anchorOffsetX="0" width="78" size="20" textAlign="center" scaleX="1" scaleY="1"/>
+		<e:Image id="img_selected" source="ui_mask_png" x="0" y="0" anchorOffsetX="0" width="98" anchorOffsetY="0" height="78" touchEnabled="false"/>
 	</e:Group>
 </e:Skin>

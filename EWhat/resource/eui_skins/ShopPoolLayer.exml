@@ -2,6 +2,7 @@
 <e:Skin class="ShopPoolLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15f3dd9e63e" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0"/>
 		<e:Button id="btn_close" label="" x="626.5" y="42">
 			<e:skinName>
 			<e:Skin states="up,down,disabled">

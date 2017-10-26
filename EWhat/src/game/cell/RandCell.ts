@@ -36,7 +36,7 @@ public img_mask:eui.Image;
 
 		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
 			NotifyCenter.getInstance().removeEventListener(LocalEvents.RESTART , this.restart , this );
-			NotifyCenter.getInstance().addEventListener(LocalEvents.CLOSE_ITEM  , this.closeItem , this );
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.CLOSE_ITEM  , this.closeItem , this );
 		}, this);
 		this.img_mask.visible = false; 
 	}

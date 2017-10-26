@@ -2,6 +2,7 @@
 <e:Skin class="AddShopLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15f53d471d2" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0"/>
 		<e:Label text="添加店铺" y="85.67" horizontalCenter="0"/>
 		<e:Label text="店名" x="61" y="364" textAlign="right" anchorOffsetX="0" width="157.33" size="50"/>
 		<e:Button id="btn_next" label="下一步" x="297" y="924">

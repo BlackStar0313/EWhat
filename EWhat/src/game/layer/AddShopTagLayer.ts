@@ -31,17 +31,23 @@ public list_tag:eui.List;
 
 
 		let dataArray: Array<TagShowNode> = [] ;
-		let addTag: TagShowNode = { tagInfo: null , showType: TagShowType.add};
+		let addTag: TagShowNode = { tagInfo: null , showType: TagShowType.add, imgName: ""};
 		dataArray.push(addTag);
 
 		let tagList: Array<StoreTagInfo> = GameStoreShopInfoManager.GetInstance().GetTagInfoList();
 		for (let i = 0 ; i < tagList.length ; ++i) {
-			let normalTag: TagShowNode = { tagInfo: tagList[i] , showType: TagShowType.normal };
+			let normalTag: TagShowNode = { tagInfo: tagList[i] , showType: TagShowType.normal , imgName: ""};
 			dataArray.push(normalTag);
 		}
 		
 		let dataPro: eui.ArrayCollection = new eui.ArrayCollection();
 		dataPro.source = dataArray;
+
+		let layout:eui.TileLayout = new eui.TileLayout();
+		layout.horizontalGap = 10;
+		layout.requestedColumnCount = 6;
+		layout.paddingLeft = 0;
+		this.list_tag.layout = layout;
 		this.list_tag.itemRenderer = TagCell;
 		this.list_tag.dataProvider = dataPro;
 		this.scroller_tag.viewport = this.list_tag;

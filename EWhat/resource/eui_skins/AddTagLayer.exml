@@ -2,6 +2,7 @@
 <e:Skin class="AddTagLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15f53f80191" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0" x="0" y="0" scaleX="1" scaleY="1"/>
 		<e:Label text="添加标签" y="85.67" horizontalCenter="0"/>
 		<e:Label text="标签名" x="71" y="244" textAlign="right" anchorOffsetX="0" width="157.33" size="50"/>
 		<e:Button id="btn_add" label="添加" x="297" y="1046">

@@ -4,11 +4,11 @@ public btn_close:eui.Button;
 public edit_name:eui.EditableText;
 public scroller_tag:eui.Scroller;
 public list_tag:eui.List;
-;
 
 
 
 	private mTagName: string = "";
+	private mSelectedImgNode: TagShowNode = null ;
 
 	public constructor() {
 		super();
@@ -27,6 +27,12 @@ public list_tag:eui.List;
 	}
 	
 	private init(): void {
+		NotifyCenter.getInstance().addEventListener(LocalEvents.SELECT_TAG_ONLY_IMG , this.onSelectImg , this );
+		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.SELECT_TAG_ONLY_IMG , this.onSelectImg , this );
+		}, this);
+
+
 		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.btn_add.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 
@@ -35,17 +41,21 @@ public list_tag:eui.List;
 		this.edit_name.addEventListener(egret.Event.CHANGE, this.onTextChange, this);
 
 		let dataArray: Array<TagShowNode> = [] ;
-		let addTag: TagShowNode = { tagInfo: null , showType: TagShowType.add};
-		dataArray.push(addTag);
 
-		let tagList: Array<StoreTagInfo> = GameStoreShopInfoManager.GetInstance().GetTagInfoList();
-		for (let i = 0 ; i < tagList.length ; ++i) {
-			let normalTag: TagShowNode = { tagInfo: tagList[i] , showType: TagShowType.normal };
-			dataArray.push(normalTag);
+		let imgName: string = "tag_{0}_png";
+		for (let i = 1 ; i < 5 ; ++i) {
+			let node: TagShowNode = { tagInfo: null , showType: TagShowType.onlyImg , imgName: imgName.format(i) };
+			dataArray.push(node);
 		}
-		
 		let dataPro: eui.ArrayCollection = new eui.ArrayCollection();
 		dataPro.source = dataArray;
+
+		let layout:eui.TileLayout = new eui.TileLayout();
+		layout.horizontalGap = 10;
+		layout.requestedColumnCount = 6;
+		layout.paddingLeft = 0;
+
+		this.list_tag.layout = layout;
 		this.list_tag.itemRenderer = TagCell;
 		this.list_tag.dataProvider = dataPro;
 		this.scroller_tag.viewport = this.list_tag;
@@ -67,6 +77,11 @@ public list_tag:eui.List;
 					GameTipsActionHelper.ScreenTip("请输入标签名字", 42, CONST_CONFIG.warningColor);
 					return;
 				}
+
+				if (this.mSelectedImgNode == null) {
+					GameTipsActionHelper.ScreenTip("请选择图片", 42, CONST_CONFIG.warningColor);
+					return;
+				}
 				
 				LayerManager.GetInstance().popLayer(this);
 				break;
@@ -84,7 +99,7 @@ public list_tag:eui.List;
 	private onFocusOut(evt: egret.Event): void {
 		let text:string = evt.target.text;
 		if (text == "") {
-			text = "输入店名";
+			text = "输入标签名字";
 			this.edit_name.text = text ;
 			this.mTagName = "" ; 
 		}
@@ -98,6 +113,10 @@ public list_tag:eui.List;
 		if (text != "") {
 			this.edit_name.text = text ; 
 		}
+	}
+
+	private onSelectImg(evt: egret.Event): void {
+		this.mSelectedImgNode = evt.data.tagNode;
 	}
 	
 }

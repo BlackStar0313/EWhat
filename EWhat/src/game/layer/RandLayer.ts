@@ -93,8 +93,11 @@ public btn_config:eui.Button;
 
 			case this.btn_config: 
 			{
-				let layer: ShopPoolLayer = new ShopPoolLayer();
-				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+				// let layer: ShopPoolLayer = new ShopPoolLayer();
+				// LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+
+				let layer: AddShopLayer = new AddShopLayer("");
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer)
 				break;
 			}
 			default:

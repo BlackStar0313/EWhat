@@ -29,6 +29,10 @@ public edit_name:eui.EditableText;
 		this.edit_name.addEventListener(egret.Event.FOCUS_IN, this.onFocusIn, this);
 		this.edit_name.addEventListener(egret.Event.FOCUS_OUT, this.onFocusOut, this);
 		this.edit_name.addEventListener(egret.Event.CHANGE, this.onTextChange, this);
+
+		if (this.mShopName != "") {
+			this.edit_name.text = this.mShopName ; 
+		}
 	}
 
 	public handleTouch(event:egret.Event):void
