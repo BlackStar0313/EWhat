@@ -21,16 +21,19 @@ class UserCenter {
 		GameStoreShopInfoManager.GetInstance().ParseShopInfoFromeLocal();
 
 		//test code 
+		// let tagArray = [];
+		// tagArray.push(1);
+		// tagArray.push(3);
 		// let node: StoreShopInfo =  { key: 0,
 		// 			name: "一号店", 
-		// 			tag: 1
+		// 			tagArray: tagArray
 		// 		} ;
 		// GameStoreShopInfoManager.GetInstance().StoreSingleShopInfoToLocal(node);
 		// let shopList = GameStoreShopInfoManager.GetInstance().GetShopInfoList();
 		// for (let i = 0 ; i < shopList.length ; ++i) {
-		// 	console.log(" key is " + shopList[i].key + " name is " + shopList[i].name + " tag is " + shopList[i].tag);
+		// 	console.log(" key is " + shopList[i].key + " name is " + shopList[i].name );
 		// }
 
-		// GameStoreShopInfoManager.GetInstance().RemoveShop(0);
+		GameStoreShopInfoManager.GetInstance().RemoveShop(0);
 	}
 }

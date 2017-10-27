@@ -1,7 +1,7 @@
 interface StoreShopInfo {
 	key: number ,
 	name: string , 
-	tag: number 
+	tagArray: Array<number>
 };
 
 interface StoreTagInfo {
@@ -67,13 +67,21 @@ class GameStoreShopInfoManager {
 			if(dataStr && dataStr.length>0) {
 				let dataArray: Array<string> = dataStr.split(",");
 
+				let tagArray: Array<number> = [] ;
+				let strTagArray: Array<string> = dataArray[2].split("&");
+				for (let i = 0 ; i < strTagArray.length ; ++i) {
+					tagArray.push(parseInt(strTagArray[i]) );
+				}
+
 				let node: StoreShopInfo =  
 				{
 					key: parseInt(dataArray[0]),
 					name: dataArray[1], 
-					tag: parseInt(dataArray[2])
+					tagArray: tagArray
 				} ;
 				this.mShopInfoList.push(node);
+
+				egret.log("~~~~ from local data  " ,node);
 			}
 		}
 	}
@@ -103,11 +111,23 @@ class GameStoreShopInfoManager {
 	}
 
 
+	//商店信息，存储本地，用","区分字段，用"&"区分商店所属tag
+	// "key,name,1&2&3&4 "
 	private generateShopStr(node: StoreShopInfo): string {
 		let str: string = "" ;
 		str += node.key + ',';
 		str += node.name + ',';
-		str += node.tag ;
+
+		let strTag = "";
+		for (let i = 0 ; i < node.tagArray.length ; ++i) {
+			strTag += node.tagArray[i];
+			if (i != node.tagArray.length - 1) {
+				strTag += "&";
+			}
+		}
+		str += strTag ;
+
+		egret.log("~~~~~~~  generateShopStr : " ,str);
 		return str ; 
 	}
 
@@ -122,15 +142,45 @@ class GameStoreShopInfoManager {
 	}
 
 	public RemoveShop(key: number ): void {
+		let isFind: boolean = false ; 
 		for (let i = 0 ;i < this.mShopInfoList.length ; ++i ) {
-			if (key == this.mShopInfoList[i].tag) {
+			let shopNode: StoreShopInfo = this.mShopInfoList[i];
+			if (shopNode.key == key) {
 				this.mShopInfoList.splice(i , 1 );
+				isFind = true ;
+				break;
 			}
 		}
-		asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreShop + key, "");
 
-		--this.mMaxShopNum;
-		asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , this.mMaxShopNum);
+		if (isFind) {
+			asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreShop + key, "");
+
+			--this.mMaxShopNum;
+			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , this.mMaxShopNum);
+		}
+
+	}
+
+	public RemoveTagOfShop(shopKey: number , tag:number ): void {
+		for (let i = 0 ;i < this.mShopInfoList.length ; ++i ) {
+			let shopNode: StoreShopInfo = this.mShopInfoList[i];
+			if (shopNode.key == shopKey) {
+				for (let iTag = 0 ; iTag < shopNode.tagArray.length ; ++iTag) {
+					if (tag == shopNode.tagArray[iTag]) {
+						if (shopNode.tagArray.length > 1) {
+							shopNode.tagArray.splice(iTag , 1);
+							this.StoreSingleShopInfoToLocal(shopNode);
+							return ;
+						}
+						else {
+							GameTipsActionHelper.ScreenTip("商店不可以没有标签哦", 42, CONST_CONFIG.warningColor);
+							return ;
+						}
+						
+					}
+				}
+			}
+		}
 	}
 	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
