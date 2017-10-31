@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ShopInfoLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f72911a82" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0"/>
+		<e:Button id="btn_close" label="" x="626.5" y="42">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Group id="group_shop" width="596.97" height="200" x="76.51" y="236.77" anchorOffsetX="0">
+			<e:Image id="icon_shop" source="bg_cell_PK_on_png" x="12.49" y="20"/>
+			<e:Label id="label_shop_name_icon" text="Label" y="82.13" horizontalCenter="-202.485"/>
+			<e:Label id="label_shop_name" text="Label" y="75" size="50" left="237"/>
+		</e:Group>
+		<e:Group width="610.61" height="436.37" x="67" y="469.33" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Scroller id="scroller_tag" width="572" height="298" x="22" y="102.6" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+				<e:Group y="-39.39">
+				<e:List id="list_tag" x="0" y="0"/>
+				</e:Group>
+			</e:Scroller>
+			<e:Group id="group_touch_tag" left="0" right="-0.38999999999998636" top="5" bottom="22.370000000000005" anchorOffsetY="0"/>
+			<e:Label text="TAG" y="30.55" horizontalCenter="-0.3050000000000068"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

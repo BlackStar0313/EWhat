@@ -23,6 +23,8 @@ public btn_close:eui.Button;
 	private init(): void {
 		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.btn_confirm.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+
+		
 	}
 
 	public handleTouch(event:egret.Event):void

@@ -8,6 +8,8 @@ class LocalEvents {
     public static SELECT_TAG_ONLY_IMG = "select_tag_only_img";  //在创建tag的时候选中一个图片
     public static ADD_NEW_TAG = "add_new_tag";      //增加新标签
     public static ADD_NEW_SHOP = "add_new_shop";       //增加新商店后通知
+    public static SWITCH_TAG = "switch_tag";        //切换商店所属tag 
+    public static SHOP_CHANGE_TAG = "shop_change_tag";  //商店tag刷新
 }
 
 

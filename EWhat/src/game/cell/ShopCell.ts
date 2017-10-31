@@ -16,6 +16,11 @@ public label_name:eui.Label;
 	protected childrenCreated():void
 	{
 		super.childrenCreated();
+		this.init();
+	}
+
+	private init(): void {
+		this.img_bg.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 	}
 	
 
@@ -23,5 +28,21 @@ public label_name:eui.Label;
 	{
 		let shopInfo: StoreShopInfo = this.data ; 
 		this.label_name.text = shopInfo.name;
+	}
+
+	public handleTouch(event:egret.Event):void
+	{ 
+		switch(event.target)
+		{
+			case this.img_bg:
+			{
+				let shopInfo: StoreShopInfo = this.data ; 
+				let layer: ShopInfoLayer = new ShopInfoLayer(shopInfo.key);
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+				break;
+			}
+			default:
+			break;
+		}
 	}
 }

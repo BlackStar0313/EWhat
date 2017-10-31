@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="EditShopTagLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f72bbdd83" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0"/>
+		<e:Button id="btn_close" label="" x="626.5" y="42">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+		</e:Button>
+		<e:Group width="610.61" height="436.37" x="67" y="145.33" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Scroller id="scroller_tag_own" width="572" height="298" x="22" y="102.6" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+			<e:Group y="-39.39">
+			<e:List id="list_tag_own" x="0" y="0"/>
+			</e:Group>
+		</e:Scroller>
+		<e:Label text="已拥有tag" y="30.55" horizontalCenter="-0.3050000000000068"/>
+		</e:Group>
+		<e:Group width="610.61" height="436.37" x="67" y="625.33" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Scroller id="scroller_tag_not_own" width="572" height="298" x="22" y="102.6" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1">
+			<e:Group y="-39.39">
+				<e:List id="list_tag_not_own" x="0" y="0"/>
+			</e:Group>
+			</e:Scroller>
+			<e:Label text="可选tag" y="30.55" horizontalCenter="-0.3050000000000068"/>
+		</e:Group>
+		<e:Button id="btn_confirm" label="确定" x="282" y="1094">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+	</e:Group>
+</e:Skin>

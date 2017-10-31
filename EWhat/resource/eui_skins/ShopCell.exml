@@ -3,6 +3,6 @@
 	<w:Config id="15f6dee3453" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
 		<e:Image id="img_bg" x="7.5" y="11" anchorOffsetX="0" width="185" anchorOffsetY="0" height="175" scaleX="1" scaleY="1" source="bg_cell_PK_on_png"/>
-		<e:Label id="label_name" text="辛辣" y="76.5" anchorOffsetX="0" size="40" textAlign="center" scaleX="1" scaleY="1" horizontalCenter="1"/>
+		<e:Label id="label_name" text="辛辣" y="76.5" anchorOffsetX="0" size="40" textAlign="center" scaleX="1" scaleY="1" horizontalCenter="1" touchEnabled="false"/>
 	</e:Group>
 </e:Skin>

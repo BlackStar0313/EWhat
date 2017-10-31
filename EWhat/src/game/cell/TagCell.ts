@@ -1,7 +1,8 @@
 enum TagShowType {
-	add , 
-	normal ,
-	onlyImg,
+	add , 		//增加tag用的，只是加号
+	normal ,  //正常显示tagcell, 可点击选中
+	onlyImg,  //只展示tag图片
+	switchTag,	//转换商店标签用的
 }
 interface TagShowNode {
 	tagInfo: StoreTagInfo , 	//正常 tag cell 用
@@ -47,16 +48,32 @@ public img_selected:eui.Image;
 		this.label_name.visible = false ; 
 		this.img_selected.visible = this.mIsSelected ; 
 		this.mTagShowNode = this.data ;
-		if (this.mTagShowNode.showType == TagShowType.add) {
-			this.img_tag.source = "ui_add_png";
-		}
-		else if (this.mTagShowNode.showType == TagShowType.onlyImg) {
-			this.img_tag.source = this.mTagShowNode.onlyImgName;
-		}
-		else {
-			this.label_name.visible = true ;
-			this.label_name.text = this.mTagShowNode.tagInfo.name;
-			this.img_tag.source = this.mTagShowNode.tagInfo.img ;
+
+		switch (this.mTagShowNode.showType) {
+			case TagShowType.add:
+			{
+				this.img_tag.source = "ui_add_png";
+				break;
+			}
+
+			case TagShowType.onlyImg:
+			{
+				this.img_tag.source = this.mTagShowNode.onlyImgName;
+				break;
+			}
+
+			case TagShowType.normal:
+			case TagShowType.switchTag:
+			{
+				this.label_name.visible = true ;
+				this.label_name.text = this.mTagShowNode.tagInfo.name;
+				this.img_tag.source = this.mTagShowNode.tagInfo.img ;
+				break;
+			}
+				
+		
+			default:
+				break;
 		}
 	}
 
@@ -76,10 +93,13 @@ public img_selected:eui.Image;
 					let node = this.mIsSelected ? this.mTagShowNode : null;
 					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.SELECT_TAG_ONLY_IMG , false , { tagNode: node });
 				}
-				else if (this.mTagShowNode.showType == TagShowType.normal){
+				else if (this.mTagShowNode.showType == TagShowType.normal) {
 					this.DoSelectCell();
 					
 					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.SELECT_TAG , false , {isSelected: this.mIsSelected, tagInfo: this.mTagShowNode.tagInfo });
+				}
+				else if (this.mTagShowNode.showType == TagShowType.switchTag) {
+					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.SWITCH_TAG , false , {tag: this.mTagShowNode.tagInfo.tag  });
 				}
 				break;
 			}
