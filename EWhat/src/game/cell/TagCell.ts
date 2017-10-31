@@ -4,9 +4,9 @@ enum TagShowType {
 	onlyImg,
 }
 interface TagShowNode {
-	tagInfo: StoreTagInfo , 
+	tagInfo: StoreTagInfo , 	//正常 tag cell 用
 	showType: TagShowType , 
-	imgName: string 
+	onlyImgName: string 		//添加 tag,只显示图片 用
 }
 
 class TagCell extends BasicItemRenderer {
@@ -51,10 +51,12 @@ public img_selected:eui.Image;
 			this.img_tag.source = "ui_add_png";
 		}
 		else if (this.mTagShowNode.showType == TagShowType.onlyImg) {
-			this.img_tag.source = this.mTagShowNode.imgName;
+			this.img_tag.source = this.mTagShowNode.onlyImgName;
 		}
 		else {
 			this.label_name.visible = true ;
+			this.label_name.text = this.mTagShowNode.tagInfo.name;
+			this.img_tag.source = this.mTagShowNode.tagInfo.img ;
 		}
 	}
 
@@ -69,14 +71,15 @@ public img_selected:eui.Image;
 					LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				}
 				else if (this.mTagShowNode.showType == TagShowType.onlyImg) {
-					this.mIsSelected = !this.mIsSelected;
-					this.img_selected.visible = this.mIsSelected ; 
+					this.DoSelectCell();
 
 					let node = this.mIsSelected ? this.mTagShowNode : null;
 					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.SELECT_TAG_ONLY_IMG , false , { tagNode: node });
 				}
 				else if (this.mTagShowNode.showType == TagShowType.normal){
-					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.SELECT_TAG , false , { tagInfo: this.mTagShowNode.tagInfo });
+					this.DoSelectCell();
+					
+					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.SELECT_TAG , false , {isSelected: this.mIsSelected, tagInfo: this.mTagShowNode.tagInfo });
 				}
 				break;
 			}
@@ -84,15 +87,34 @@ public img_selected:eui.Image;
 			break;
 		}
 	}
-	
 
+	private DoSelectCell(): void {
+		this.mIsSelected = !this.mIsSelected;
+		this.img_selected.visible = this.mIsSelected ; 
+	}
+	
+	//添加标签图片用
 	private onSelectImg(evt: egret.Event) {
 		if (evt.data && evt.data.tagNode ) {
 			let tagNode: TagShowNode = evt.data.tagNode;
-			if (tagNode.showType == TagShowType.onlyImg && tagNode.imgName != this.mTagShowNode.imgName) {	//别的cell被选中
+			if (tagNode.showType == TagShowType.onlyImg && 
+				this.mTagShowNode.showType == TagShowType.onlyImg && 
+				tagNode.onlyImgName != this.mTagShowNode.onlyImgName) {	//别的cell被选中
+
 				this.mIsSelected = false ; 
 				this.img_selected.visible = false ; 
 			}
 		}
 	}
+
+	//选择tag用
+	// private onSelectTag(evt: egret.Event): void {
+	// 	if (evt.data && evt.data.tagNode ) {
+	// 		let tagNode: StoreTagInfo = evt.data.tagNode;
+	// 		if (this.mTagShowNode.showType == TagShowType.normal && tagNode.img != this.mTagShowNode.tagInfo.img) {	//别的cell被选中
+	// 			this.mIsSelected = false ; 
+	// 			this.img_selected.visible = false ; 
+	// 		}
+	// 	}
+	// }
 }

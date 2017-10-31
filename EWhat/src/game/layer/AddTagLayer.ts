@@ -44,7 +44,7 @@ public list_tag:eui.List;
 
 		let imgName: string = "tag_{0}_png";
 		for (let i = 1 ; i < 5 ; ++i) {
-			let node: TagShowNode = { tagInfo: null , showType: TagShowType.onlyImg , imgName: imgName.format(i) };
+			let node: TagShowNode = { tagInfo: null , showType: TagShowType.onlyImg , onlyImgName: imgName.format(i) };
 			dataArray.push(node);
 		}
 		let dataPro: eui.ArrayCollection = new eui.ArrayCollection();
@@ -82,8 +82,13 @@ public list_tag:eui.List;
 					GameTipsActionHelper.ScreenTip("请选择图片", 42, CONST_CONFIG.warningColor);
 					return;
 				}
-				
+
 				LayerManager.GetInstance().popLayer(this);
+
+				let info: StoreTagInfo = { tag: GameStoreShopInfoManager.GetInstance().GetTagHash() , img: this.mSelectedImgNode.onlyImgName , name: this.mTagName}
+				GameStoreShopInfoManager.GetInstance().StoreTagToLocal(info);
+
+				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.ADD_NEW_TAG);
 				break;
 			}
 			default:

@@ -18,7 +18,11 @@ class UserCenter {
 
 
 	public InitUser(): void {
+		//test code 
+		// asLocalStorage.getInstance().clearAll();
+
 		GameStoreShopInfoManager.GetInstance().ParseShopInfoFromeLocal();
+		GameStoreShopInfoManager.GetInstance().ParseTagInfoFromeLocal();
 
 		//test code 
 		// let tagArray = [];
@@ -34,6 +38,6 @@ class UserCenter {
 		// 	console.log(" key is " + shopList[i].key + " name is " + shopList[i].name );
 		// }
 
-		GameStoreShopInfoManager.GetInstance().RemoveShop(0);
+		// GameStoreShopInfoManager.GetInstance().RemoveShop(0);
 	}
 }

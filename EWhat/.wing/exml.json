@@ -1,47 +1,55 @@
 {
-    "15e579e37ea": {
-        "path": "game/RandLayer.ts",
-        "class": "RandLayer",
-        "parentPath": ""
-    },
-    "15e57a6e93f": {
-        "path": "game/cell/RandCell.ts",
-        "class": "RandCell",
-        "parentPath": ""
-    },
-    "15f3da3ec92": {
-        "path": "game/EditShopLayer.ts",
-        "class": "EditShopLayer",
-        "parentPath": ""
-    },
-    "15f3dd9e63e": {
-        "path": "game/ShopPoolLayer.ts",
-        "class": "ShopPoolLayer",
-        "parentPath": ""
-    },
-    "15f53d471d2": {
-        "path": "game/AddShopLayer.ts",
-        "class": "AddShopLayer",
-        "parentPath": ""
-    },
-    "15f53f80191": {
-        "path": "game/layer/AddTagLayer.ts",
-        "class": "AddTagLayer",
-        "parentPath": ""
-    },
-    "15f5408111f": {
-        "path": "game/cell/TagCell.ts",
-        "class": "TagCell",
-        "parentPath": ""
-    },
-    "15f54142e78": {
-        "path": "game/layer/AddShopTag.ts",
-        "class": "AddShopTag",
-        "parentPath": ""
-    },
-    "15f5416a998": {
-        "path": "game/layer/AddShopTagLayer.ts",
-        "class": "AddShopTagLayer",
-        "parentPath": ""
-    }
+  "15e579e37ea": {
+    "path": "game/RandLayer.ts",
+    "class": "RandLayer",
+    "parentPath": ""
+  },
+  "15e57a6e93f": {
+    "path": "game/cell/RandCell.ts",
+    "class": "RandCell",
+    "parentPath": ""
+  },
+  "15f3da3ec92": {
+    "path": "game/EditShopLayer.ts",
+    "class": "EditShopLayer",
+    "parentPath": ""
+  },
+  "15f3dd9e63e": {
+    "path": "game/ShopPoolLayer.ts",
+    "class": "ShopPoolLayer",
+    "parentPath": ""
+  },
+  "15f53d471d2": {
+    "path": "game/AddShopLayer.ts",
+    "class": "AddShopLayer",
+    "parentPath": ""
+  },
+  "15f53f80191": {
+    "path": "game/layer/AddTagLayer.ts",
+    "class": "AddTagLayer",
+    "parentPath": ""
+  },
+  "15f5408111f": {
+    "path": "game/cell/TagCell.ts",
+    "class": "TagCell",
+    "parentPath": ""
+  },
+  "15f54142e78": {
+    "path": "game/layer/AddShopTag.ts",
+    "class": "AddShopTag",
+    "parentPath": ""
+  },
+  "15f5416a998": {
+    "path": "game/layer/AddShopTagLayer.ts",
+    "class": "AddShopTagLayer",
+    "parentPath": ""
+  },
+  "15f6dee3453": {
+    "path": "game/cell/ShopCell.ts",
+    "class": "ShopCell",
+    "parentPath": ""
+  },
+  "global": {
+    "globalAutoLayerMarkEnable": true
+  }
 }

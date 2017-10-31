@@ -53,6 +53,13 @@ class MainScene extends egret.DisplayObjectContainer{
 
 		this.m_randLayer = new RandLayer();
 		LayerManager.GetInstance().pushLayer(this.m_randLayer, LAYER_TYPE.BasicUIlayer);
+
+		let labelVersion: eui.Label = new eui.Label();
+		labelVersion.text = "v0.0.1";
+		labelVersion.size = 40;
+		labelVersion.x = 10 ; 
+		labelVersion.y = 5 ;
+		this.addChildAt(labelVersion, 100);
 	}
 
 	

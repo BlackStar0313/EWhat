@@ -51,6 +51,11 @@ public edit_name:eui.EditableText;
 					GameTipsActionHelper.ScreenTip("请输入店名", 42, CONST_CONFIG.warningColor);
 					return;
 				}
+
+				if (GameStoreShopInfoManager.GetInstance().IsShopNameExist(this.mShopName)) {
+					GameTipsActionHelper.ScreenTip("店名已存在", 42, CONST_CONFIG.warningColor);
+					return;
+				}
 				
 				LayerManager.GetInstance().popLayer(this);
 

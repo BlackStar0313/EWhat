@@ -123,17 +123,16 @@ class Main extends eui.UILayer {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
-    private textfield:egret.TextField;
     /**
      * 创建场景界面
      * Create scene interface
      */
     protected startCreateScene(): void {
+        UserCenter.getInstance().InitUser();
+
        let mainscene: MainScene = MainScene.GetInstance();
        mainscene.screenWidth = this.width;
        mainscene.screenHeight = this.height;
        this.addChild(mainscene);
-
-       UserCenter.getInstance().InitUser();
     }
 }

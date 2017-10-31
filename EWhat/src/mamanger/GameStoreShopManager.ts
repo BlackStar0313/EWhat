@@ -6,8 +6,8 @@ interface StoreShopInfo {
 
 interface StoreTagInfo {
 	tag: number , 
-	img: number ,
-	name: number 
+	img: string ,
+	name: string 
 };
 
 class GameStoreShopInfoManager {
@@ -15,6 +15,8 @@ class GameStoreShopInfoManager {
 	private mTagInfoList: Array<StoreTagInfo> = [] ; 
 	private mMaxShopNum: number = 0 ;
 	private mMaxTagNum: number = 0 ; 
+	private mTagHash: number = 0 ; 
+	private mShopHash: number = 0 ; 
 
 	public static mInst: GameStoreShopInfoManager = null ; 
 	public constructor() {
@@ -30,6 +32,8 @@ class GameStoreShopInfoManager {
 	public GetShopInfoList(): Array <StoreShopInfo> { return this.mShopInfoList; }
 	public GetTagInfoList(): Array<StoreTagInfo> { return this.mTagInfoList; }
 
+	public GetTagHash(): number { return this.mTagHash; }
+	public GetShopHash(): number { return this.mShopHash; }
 
 	public GetShopInfo(key: number): StoreShopInfo {
 		for (let i = 0 ;i < this.mShopInfoList.length ; ++i ) {
@@ -38,6 +42,20 @@ class GameStoreShopInfoManager {
 			}
 		}
 		return null ; 
+	}
+
+	public GetShopInfoByName(name:string ): StoreShopInfo {
+		for (let i = 0 ;i < this.mShopInfoList.length ; ++i ) {
+			if (name == this.mShopInfoList[i].name) {
+				return this.mShopInfoList[i];
+			}
+		}
+		return null ; 
+	}
+
+	public IsShopNameExist(name: string ): boolean {
+		let shopInfo: StoreShopInfo = this.GetShopInfoByName(name);
+		return shopInfo ? true : false ; 
 	}
 
 	public GetTagInfo(tag: number): StoreTagInfo {
@@ -59,10 +77,15 @@ class GameStoreShopInfoManager {
 
 	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	public ParseShopInfoFromeLocal(): void {
+		//parse tag hash ;
+		this.mShopHash = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.keyShopHash);
+		this.mShopHash = this.mShopHash ? this.mShopHash : 0 ;
+
 		this.mShopInfoList = [];
 		this.mMaxShopNum = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.KeyMaxShopNum);
 		this.mMaxShopNum = this.mMaxShopNum ? this.mMaxShopNum : 0 ; 
-		for (let i = 0 ; i < this.mMaxShopNum; ++i) {
+
+		for (let i = 0 ; i < this.mShopHash; ++i) {
 			let dataStr: string = asLocalStorage.getInstance().getKeyString(StoreInfoLocalHelper.KeyStoreShop + i);
 			if(dataStr && dataStr.length>0) {
 				let dataArray: Array<string> = dataStr.split(",");
@@ -107,6 +130,9 @@ class GameStoreShopInfoManager {
 			this.mShopInfoList.push(node);
 			++this.mMaxShopNum;
 			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , this.mMaxShopNum);
+
+			++this.mShopHash;
+			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.keyShopHash , this.mShopHash);
 		}
 	}
 
@@ -186,10 +212,15 @@ class GameStoreShopInfoManager {
 
 	//<<<<<<<<<<<<<<<<<<<<<<
 	public ParseTagInfoFromeLocal(): void {
+		//parse tag hash ;
+		this.mTagHash = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.KeyTagHash);
+		this.mTagHash = this.mTagHash ? this.mTagHash : 0 ;
+
+
 		this.mTagInfoList = [];
 		this.mMaxTagNum = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.KeyMaxTagNum);
 		this.mMaxTagNum = this.mMaxTagNum ? this.mMaxTagNum : 0 ; 
-		for (let i = 0 ; i < this.mMaxTagNum; ++i) {
+		for (let i = 0 ; i < this.mTagHash; ++i) {
 			let dataStr: string = asLocalStorage.getInstance().getKeyString(StoreInfoLocalHelper.KeyStoreTag + i);
 			if(dataStr && dataStr.length>0) {
 				let dataArray: Array<string> = dataStr.split(",");
@@ -197,22 +228,27 @@ class GameStoreShopInfoManager {
 				let node: StoreTagInfo =  
 				{
 					tag: parseInt(dataArray[0]),
-					img: parseInt(dataArray[1]), 
-					name: parseInt(dataArray[2])
+					img: dataArray[1], 
+					name: dataArray[2]
 				} ;
 				this.mTagInfoList.push(node);
 			}
 		}
+
+	
 	}
 
 	public StoreTagToLocal(tagInfo: StoreTagInfo): void {
 		let str = this.generateTagStr(tagInfo);
-		asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreTag , str);
+		asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreTag + tagInfo.tag , str);
 
 		if (!this.IsContainTag(tagInfo.tag)) {
 			this.mTagInfoList.push(tagInfo);
 			++this.mMaxTagNum;
 			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxTagNum , this.mMaxTagNum);
+
+			++this.mTagHash;
+			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyTagHash , this.mTagHash);
 		}
 	}
 

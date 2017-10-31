@@ -8,7 +8,8 @@
     "AddTagLayer": "resource/eui_skins/AddTagLayer.exml",
     "TagCell": "resource/eui_skins/TagCell.exml",
     "AddShopTag": "resource/eui_skins/AddShopTag.exml",
-    "AddShopTagLayer": "resource/eui_skins/AddShopTagLayer.exml"
+    "AddShopTagLayer": "resource/eui_skins/AddShopTagLayer.exml",
+    "ShopCell": "resource/eui_skins/ShopCell.exml"
   },
   "autoGenerateExmlsList": true,
   "exmls": [
@@ -18,6 +19,7 @@
     "resource/eui_skins/EditShopLayer.exml",
     "resource/eui_skins/RandCell.exml",
     "resource/eui_skins/RandLayer.exml",
+    "resource/eui_skins/ShopCell.exml",
     "resource/eui_skins/ShopPoolLayer.exml",
     "resource/eui_skins/TagCell.exml"
   ]
