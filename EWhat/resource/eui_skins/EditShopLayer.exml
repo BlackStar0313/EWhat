@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="EditShopLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="15f3da3ec92" ></w:Config>
-	<e:Group left="0" right="0" top="0" bottom="0">
-		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0" x="0" y="0" scaleX="1" scaleY="1"/>
-		<e:Group id="group_info" width="642" height="430" x="52" y="210" anchorOffsetX="0" anchorOffsetY="0"/>
-		<e:Group id="group_tag" width="618" height="200" x="52" y="738" anchorOffsetX="0"/>
-		<e:Button id="btn_confirm" label="添加" x="283" y="1042">
-			<e:skinName>
-				<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="btn27_s1_png" source.down="btn27_s0_png" source.disabled="btn27_s0_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-				</e:Skin>
-			</e:skinName>
-		</e:Button>
-		<e:Button id="btn_close" label="" x="626.5" y="42">
-			<e:skinName>
-				<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-				</e:Skin>
-			</e:skinName>
-		</e:Button>
-		<e:Label text="添加店名" x="324" y="112"/>
+	<e:Group left="0" right="0" top="0" bottom="0" touchEnabled="true" touchThrough="false">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0" x="0" y="0" scaleX="1" scaleY="1" touchEnabled="true"/>
+		<e:EditableText id="edit_name" width="382" height="64" text="输入店名" x="184" y="41.27" anchorOffsetX="0" anchorOffsetY="0" verticalAlign="middle"/>
 	</e:Group>
 </e:Skin>

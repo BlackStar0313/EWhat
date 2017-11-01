@@ -35,19 +35,25 @@ public group_touch_tag:eui.Group;
 		this.group_touch_tag.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 
 		NotifyCenter.getInstance().addEventListener(LocalEvents.SHOP_CHANGE_TAG , this.refreshShow , this );
+		NotifyCenter.getInstance().addEventListener(LocalEvents.CHANGE_SHOP_NAME , this.refreshShopInfo , this );
 		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
 			NotifyCenter.getInstance().removeEventListener(LocalEvents.SHOP_CHANGE_TAG , this.refreshShow , this );
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.CHANGE_SHOP_NAME , this.refreshShopInfo , this );
 		}, this);
 
 		this.refreshShow();
 	}
 
-	private refreshShow(): void {
+	private refreshShopInfo(): void {
 		let shopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(this.mShopKey);
 		this.label_shop_name.text = shopInfo.name ; 
 		this.label_shop_name_icon.text = shopInfo.name;
+	}
 
+	private refreshShow(): void {
+		this.refreshShopInfo();
 
+		let shopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(this.mShopKey);
 		//设置商店tag
 		if (this.list_tag.dataProvider && this.list_tag.dataProvider.length > 0)
 		{
@@ -95,6 +101,15 @@ public group_touch_tag:eui.Group;
 				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer)
 				break;
 			}
+
+			case this.label_shop_name:
+			{
+
+				let layer: EditShopLayer = new EditShopLayer(this.mShopKey);
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer)
+				break;
+			}
+
 			default:
 			break;
 		}

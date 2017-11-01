@@ -1,11 +1,10 @@
 class EditShopLayer extends BasicLayer {
-public group_info:eui.Group;
-public group_tag:eui.Group;
-public btn_confirm:eui.Button;
-public btn_close:eui.Button;
+public edit_name:eui.EditableText;
 
-	public constructor() {
+	private mShopKey: number = 0 ; 
+	public constructor(shopkey: number) {
 		super();
+		this.mShopKey = shopkey ; 
 	}
 
 	protected partAdded(partName:string,instance:any):void
@@ -18,31 +17,66 @@ public btn_close:eui.Button;
 	{
 		super.childrenCreated();
 		this.init();
+
 	}
 	
 	private init(): void {
-		this.btn_close.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
-		this.btn_confirm.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+		this.edit_name.addEventListener(egret.Event.FOCUS_IN, this.onFocusIn, this);
+		this.edit_name.addEventListener(egret.Event.FOCUS_OUT, this.onFocusOut, this);
+		this.edit_name.addEventListener(egret.Event.CHANGE, this.onTextChange, this);
 
-		
+		// egret.TouchEvent.dispatchTouchEvent(this.edit_name, egret.TouchEvent.TOUCH_BEGIN);
+		// this.edit_name.dispatchEvent(new egret.TouchEvent(egret.TouchEvent.TOUCH_BEGIN, true));
+		// this.edit_name.dispatchEvent(new egret.FocusEvent(egret.FocusEvent.FOCUS_IN, true));
+
+		// this.once(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
+
+		let beforeShopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(this.mShopKey);
+		this.edit_name.text = beforeShopInfo.name;
 	}
 
-	public handleTouch(event:egret.Event):void
-	{ 
-		switch(event.target)
-		{
-			case this.btn_close:
-			{
-				LayerManager.GetInstance().popLayer(this);
-				break;
-			}
+	private onEnterFrame(): void {
+		// egret.TouchEvent.dispatchTouchEvent(this.edit_name, egret.TouchEvent.TOUCH_BEGIN);
+		// this.edit_name.dispatchEvent(new egret.FocusEvent(egret.FocusEvent.FOCUS_IN, true));
+		this.dispatchEvent(new egret.Event("focus"));
+	}
 
-			case this.btn_confirm:
-			{
-				break;
-			}
-			default:
-			break;
+	private onFocusIn(evt: egret.Event): void {
+		this.edit_name.text = "";
+	}
+
+	private onFocusOut(evt: egret.Event): void {
+		let text:string = evt.target.text;
+
+		let beforeShopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(this.mShopKey);
+
+		let shopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfoByName(text);
+		if (shopInfo ) {
+			GameTipsActionHelper.ScreenTip("该店名已存在", 34 , CONST_CONFIG.warningColor);
+			LayerManager.GetInstance().popLayer(this);
+			return ;
+		}
+
+		if (text == "") {
+			GameTipsActionHelper.ScreenTip("店名不能为空", 34 , CONST_CONFIG.warningColor);
+			LayerManager.GetInstance().popLayer(this);
+			return ;
+		}
+
+		beforeShopInfo.name = text ; 
+		GameStoreShopInfoManager.GetInstance().StoreSingleShopInfoToLocal(beforeShopInfo);
+		NotifyCenter.getInstance().dispatchEventWith(LocalEvents.CHANGE_SHOP_NAME  );
+		let str: string = "名字修改为" + text ; 
+		GameTipsActionHelper.ScreenTip(str, 34 , CONST_CONFIG.successColor);
+
+
+		LayerManager.GetInstance().popLayer(this);
+	}
+
+	private onTextChange(evt: egret.Event): void {
+		let text:string = evt.target.text;
+		if (text != "") {
+			this.edit_name.text = text ; 
 		}
 	}
 }

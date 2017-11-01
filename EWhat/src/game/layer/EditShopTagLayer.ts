@@ -34,8 +34,10 @@ public btn_confirm:eui.Button;
 
 		let self = this;
 		NotifyCenter.getInstance().addEventListener(LocalEvents.SWITCH_TAG , this.switchTag , this );
+		NotifyCenter.getInstance().addEventListener(LocalEvents.ADD_NEW_TAG , this.onAddNewTag , this );
 		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
 			NotifyCenter.getInstance().removeEventListener(LocalEvents.SWITCH_TAG , this.switchTag , this );
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.ADD_NEW_TAG , this.onAddNewTag , this );
 			self.mDataOwnedArray = [];
 			self.mDataNotOwnedArray = [];
 		}, this);
@@ -181,6 +183,20 @@ public btn_confirm:eui.Button;
 		let shopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(this.mShopKey);
 		shopInfo.tagArray = ownArr ; 
 		GameStoreShopInfoManager.GetInstance().StoreSingleShopInfoToLocal(shopInfo);
+	}
+
+	private onAddNewTag(evt: egret.Event): void {
+		if (!evt.data || !evt.data.tag) {
+			egret.error("~~~  error data ");
+			return ;
+		}
+
+		
+		let tagInfo: StoreTagInfo = GameStoreShopInfoManager.GetInstance().GetTagInfo(evt.data.tag);
+		let normalTag: TagShowNode = { tagInfo: tagInfo , showType: TagShowType.switchTag , onlyImgName: ""};
+		this.mDataNotOwnedArray.push(normalTag);
+
+		this.refreshShow();
 	}
 	
 }

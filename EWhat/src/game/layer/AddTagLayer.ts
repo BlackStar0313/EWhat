@@ -88,7 +88,7 @@ public list_tag:eui.List;
 				let info: StoreTagInfo = { tag: GameStoreShopInfoManager.GetInstance().GetTagHash() , img: this.mSelectedImgNode.onlyImgName , name: this.mTagName}
 				GameStoreShopInfoManager.GetInstance().StoreTagToLocal(info);
 
-				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.ADD_NEW_TAG);
+				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.ADD_NEW_TAG, false , { tag:  info.tag});
 				break;
 			}
 			default:

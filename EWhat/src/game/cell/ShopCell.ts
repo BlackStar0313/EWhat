@@ -21,13 +21,23 @@ public label_name:eui.Label;
 
 	private init(): void {
 		this.img_bg.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+
+		NotifyCenter.getInstance().addEventListener(LocalEvents.CHANGE_SHOP_NAME , this.refreshShow , this );
+		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.CHANGE_SHOP_NAME , this.refreshShow , this );
+		}, this);
 	}
 	
 
 	protected dataChanged(): void 
 	{
+		this.refreshShow();
+	}
+
+	private refreshShow(): void {
 		let shopInfo: StoreShopInfo = this.data ; 
-		this.label_name.text = shopInfo.name;
+		let newShopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(shopInfo.key);
+		this.label_name.text = newShopInfo.name;
 	}
 
 	public handleTouch(event:egret.Event):void
