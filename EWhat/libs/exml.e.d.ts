@@ -8,7 +8,11 @@ declare class EditShopLayerSkin extends eui.Skin{
 }
 declare class EditShopTagLayerSkin extends eui.Skin{
 }
+declare class MainLayerSkin extends eui.Skin{
+}
 declare class RandCellSkin extends eui.Skin{
+}
+declare class RandChooseTagLayerSkin extends eui.Skin{
 }
 declare class RandLayerSkin extends eui.Skin{
 }

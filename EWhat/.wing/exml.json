@@ -61,5 +61,15 @@
         "path": "game/layer/EditShopTagLayer.ts",
         "class": "EditShopTagLayer",
         "parentPath": ""
+    },
+    "15f8aa6ba75": {
+        "path": "game/layer/MainLayer.ts",
+        "class": "MainLayer",
+        "parentPath": ""
+    },
+    "15f8ac951a1": {
+        "path": "game/layer/RandChooseTagLayer.ts",
+        "class": "RandChooseTagLayer",
+        "parentPath": ""
     }
 }

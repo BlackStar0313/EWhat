@@ -1,8 +1,9 @@
 class RandLayer extends BasicLayer {
+public btn_back:eui.Button;
 public group_goods:eui.DataGroup;
 public btn_start:eui.Button;
 public btn_config:eui.Button;
-;
+
 
 
 	private m_goodsList: Array<ItemData> = [] ; 
@@ -28,6 +29,7 @@ public btn_config:eui.Button;
 	private init(): void {
 		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.btn_config.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+		this.btn_back.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.RefreshShow();
 	}
 
@@ -95,6 +97,14 @@ public btn_config:eui.Button;
 			{
 				let layer: ShopPoolLayer = new ShopPoolLayer();
 				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);				
+				break;
+			}
+
+			case this.btn_back: {
+				LayerManager.GetInstance().popLayer(this);
+
+				let layer: RandChooseTagLayer = new RandChooseTagLayer();
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;
 			}
 			default:

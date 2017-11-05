@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MainLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
+	<w:Config id="15f8aa6ba75" ></w:Config>
+	<e:Group left="0" right="0" top="0" bottom="0">
+		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0" x="0" y="0" scaleX="1" scaleY="1"/>
+		<e:Button id="btn_start" label="随机" x="93.01" y="471">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="btn_random_off_png" source.down="btn_random_on_png" source.disabled="btn_random_on_png" x="0" y="0"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0" size="40"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Group width="736.36" height="90.91" x="9" y="4.88" anchorOffsetX="0" anchorOffsetY="0">
+			<e:Button id="btn_config" label="" x="4" y="16">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="btn_config_png" source.down="btn_config_s1_png" source.disabled="btn_config_s1_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+		</e:Group>
+		<e:Button id="btn_add" label="" x="487.91" y="801.33" anchorOffsetX="0" width="110" anchorOffsetY="0" height="110">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="ui_add_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Button id="btn_shop" label="菜单" x="500.36" y="427.52">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="title1_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label text="广告广告广告广告广告广告广告广告广告广告广告" y="1116.48" size="50" horizontalCenter="2.5"/>
+	</e:Group>
+</e:Skin>

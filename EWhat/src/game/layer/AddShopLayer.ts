@@ -4,10 +4,12 @@ public btn_close:eui.Button;
 public edit_name:eui.EditableText;
 
 	private mShopName: string = "";
+	private mIsBackToMain: boolean = false ; 
 
-	public constructor(shopName: string ) {
+	public constructor(shopName: string, isBackToMain: boolean = false  ) {
 		super();
 		this.mShopName = shopName;
+		this.mIsBackToMain = isBackToMain;
 	}
 
 	protected partAdded(partName:string,instance:any):void
@@ -42,6 +44,11 @@ public edit_name:eui.EditableText;
 			case this.btn_close:
 			{
 				LayerManager.GetInstance().popLayer(this);
+
+				if (this.mIsBackToMain) {
+					let layer: MainLayer = new MainLayer();
+					LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+				}
 				break;
 			}
 

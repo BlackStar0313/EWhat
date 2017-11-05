@@ -3,6 +3,14 @@
 	<w:Config id="15e579e37ea" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
 		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0"/>
+		<e:Button id="btn_back" label="" x="11.5" y="3">
+			<e:skinName>
+			<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+			</e:skinName>
+		</e:Button>
 		<e:DataGroup id="group_goods" width="640" height="800" x="55" y="71.03" anchorOffsetX="0" anchorOffsetY="0"/>
 		<e:Button id="btn_start" label="EWhat?" x="243" y="902">
 			<e:skinName>
@@ -12,7 +20,7 @@
 				</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Button id="btn_config" label="" x="687" y="3">
+		<e:Button id="btn_config" label="" x="687" y="3" visible="false" locked="true">
 			<e:skinName>
 				<e:Skin states="up,down,disabled">
 				<e:Image width="100%" height="100%" source="btn_config_png" source.down="btn_config_s1_png" source.disabled="btn_config_s1_png"/>

@@ -4,7 +4,7 @@ class MainScene extends egret.DisplayObjectContainer{
 	private m_width: number = 0 ; 
 	private m_height: number = 0 ; 
 
-	private m_randLayer: BasicLayer = null ; 
+	// private m_randLayer: BasicLayer = null ; 
 
 	public set screenWidth(v:number) { this.m_width = v; }
 	public get screenWidth():number { return this.m_width;}
@@ -51,8 +51,8 @@ class MainScene extends egret.DisplayObjectContainer{
 		this.addChild(mask);
 
 
-		this.m_randLayer = new RandLayer();
-		LayerManager.GetInstance().pushLayer(this.m_randLayer, LAYER_TYPE.BasicUIlayer);
+		let mainLayer: MainLayer = new MainLayer();
+		LayerManager.GetInstance().pushLayer(mainLayer, LAYER_TYPE.BasicUIlayer);
 
 		let labelVersion: eui.Label = new eui.Label();
 		labelVersion.text = "v0.0.1";

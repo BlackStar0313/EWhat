@@ -86,4 +86,5 @@ class DataManager {
     public clearData(): void {
         DataManager._ins = null;
     }
+
 }

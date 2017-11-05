@@ -77,6 +77,9 @@ public group_none:eui.Group;
 			case this.btn_close:
 			{
 				LayerManager.GetInstance().popLayer(this);
+
+				let layer: MainLayer = new MainLayer();
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;
 			}
 
