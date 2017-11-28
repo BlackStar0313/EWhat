@@ -28,7 +28,7 @@ var game_file_list = [
 	"bin-debug/game/layer/EditShopTagLayer.js",
 	"bin-debug/game/layer/MainLayer.js",
 	"bin-debug/game/layer/RandChooseTagLayer.js",
-	"bin-debug/utils/GameLayerActionHelper.js",
+	"bin-debug/Constants.js",
 	"bin-debug/game/layer/ShopInfoLayer.js",
 	"bin-debug/game/layer/ShopPoolLayer.js",
 	"bin-debug/game/MainScene.js",
@@ -46,7 +46,7 @@ var game_file_list = [
 	"bin-debug/ThemeAdapter.js",
 	"bin-debug/AssetAdapter.js",
 	"bin-debug/data/interface/ItemDataInterface.js",
-	"bin-debug/Constants.js",
+	"bin-debug/utils/GameLayerActionHelper.js",
 	//----auto game_file_list end----
 ];
 

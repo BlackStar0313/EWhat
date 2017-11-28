@@ -6,11 +6,16 @@ public btn_config:eui.Button;
 
 
 
-	private m_goodsList: Array<ItemData> = [] ; 
+	private m_goodsList: Array<number> = [] ; 
 	private m_randTimer: egret.Timer = null ;
+	private m_selectTagArr: Array<number> = [];
 
-	public constructor() {
+	public constructor(selectTagArr: Array<number>) {
 		super();
+
+		for (let i = 0 ; i < selectTagArr.length; ++i) {
+			this.m_selectTagArr.push(selectTagArr[i]);
+		}
 	}
 
 	protected partAdded(partName:string,instance:any):void
@@ -34,8 +39,6 @@ public btn_config:eui.Button;
 	}
 
 	public RefreshShow(): void {
-		let goodsData:{ [idx: number ]: ItemData } = DataManager.getInstance().GetRandShowItems();
-
 		if (this.group_goods.dataProvider) 
 			(<eui.ArrayCollection>this.group_goods.dataProvider).removeAll();
 
@@ -48,25 +51,48 @@ public btn_config:eui.Button;
 		layout.verticalGap = 0;
 		layout.horizontalGap = 0;
 		layout.requestedColumnCount = 4 ;
-		this.group_goods.layout = layout ; 
+		this.group_goods.layout = layout ;
 
+		let showShopPool: Array<StoreShopInfo> = this.generateRandomPool(); 
 		let dataProvider:eui.ArrayCollection = new eui.ArrayCollection();
-		for (let key in goodsData) {
-			let goods: ItemData = goodsData[key];
-			dataProvider.addItem( {
-				item: goods 
-			} );
-		}
-
+		dataProvider.source = showShopPool; 
 		this.group_goods.itemRenderer = RandCell;
 		this.group_goods.dataProvider = dataProvider;
 
 
 		this.m_goodsList = []; 
-		for (let key in goodsData) {
-			let goods: ItemData = goodsData[key];
-			this.m_goodsList.push(goods);
+		for (let i = 0 ; i < showShopPool.length ; ++i) {
+			let goods: StoreShopInfo = showShopPool[i];
+			this.m_goodsList.push(goods.key);
 		}
+	}
+
+	private generateRandomPool(): Array<StoreShopInfo> {
+		let showShopPool: Array<StoreShopInfo> = [] ; 
+
+		//处理默认使用数值表的情况
+		for (let i = 0 ; i < this.m_selectTagArr.length; ++i) {
+			let tag: number = this.m_selectTagArr[i];
+			//默认读数值表
+			if (tag == CONST_CONFIG.defaultTagInfo.tag) {
+				let goodsData:{ [idx: number ]: ItemData } = DataManager.getInstance().GetRandShowItems();
+				for (let key in goodsData) {
+					let node: StoreShopInfo =  
+					{
+						key: goodsData[key].data.idx,
+						name: goodsData[key].data.name, 
+						tagArray: [CONST_CONFIG.defaultTagInfo.tag]
+					} ;
+					showShopPool.push(node)
+				}
+			}
+		}
+
+		let storeShopArr = GameStoreShopInfoManager.GetInstance().GetShopInfoListByTagArray(this.m_selectTagArr);
+		if (storeShopArr.length > 0) {
+			showShopPool = showShopPool.concat(storeShopArr);
+		}
+		return showShopPool;
 	}
 
 	public handleTouch(event:egret.Event):void
@@ -103,7 +129,10 @@ public btn_config:eui.Button;
 			case this.btn_back: {
 				LayerManager.GetInstance().popLayer(this);
 
-				let layer: RandChooseTagLayer = new RandChooseTagLayer();
+				// let layer: RandChooseTagLayer = new RandChooseTagLayer();
+				// LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+
+				let layer: MainLayer = new MainLayer();
 				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;
 			}
@@ -128,7 +157,7 @@ public btn_config:eui.Button;
 		this.m_randTimer.addEventListener(egret.TimerEvent.TIMER, ()=> { 
 			let randId: number = Math.floor(Math.random() * this.m_goodsList.length)  ; 
 			NotifyCenter.getInstance().dispatchEventWith( LocalEvents.CLOSE_ITEM , false, {
-				id: self.m_goodsList[randId].data.idx 
+				id: self.m_goodsList[randId]
 			} );
 			self.m_goodsList.splice(randId, 1) ;
 			self.m_randTimer = null ; 

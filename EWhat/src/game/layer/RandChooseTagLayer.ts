@@ -90,11 +90,12 @@ protected childrenCreated():void
 
 			case this.btn_next:
 			{
+				let selectTagArr: Array<number> = [] ; 
 				let isCanNext: boolean = false ; 
 				for (let key in this.mSelectTagDic) {
 					if (this.mSelectTagDic[key] == true ) {
 						isCanNext = true ;
-						break;
+						selectTagArr.push(parseInt(key));
 					}
 				}
 
@@ -106,7 +107,7 @@ protected childrenCreated():void
 
 				LayerManager.GetInstance().popLayer(this);
 
-				let layer: RandLayer = new RandLayer();
+				let layer: RandLayer = new RandLayer(selectTagArr);
 				LayerManager.GetInstance().pushLayer(layer , LAYER_TYPE.PopUpLayer);
 
 				//TODO:需要在这里传入商店相关的信息给randlayer去构造

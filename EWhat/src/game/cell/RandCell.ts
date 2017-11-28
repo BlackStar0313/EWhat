@@ -37,16 +37,17 @@ public img_mask:eui.Image;
 		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
 			NotifyCenter.getInstance().removeEventListener(LocalEvents.RESTART , this.restart , this );
 			NotifyCenter.getInstance().removeEventListener(LocalEvents.CLOSE_ITEM  , this.closeItem , this );
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.FIRST_TIME_RUN , this.restart , this );
 		}, this);
 		this.img_mask.visible = false; 
 	}
 
 	protected dataChanged(): void {
-		let item: ItemData = this.data.item; 
+		let item: StoreShopInfo = this.data; 
 
 		// this.img_bg.source = item.data.bgImg ; 
 		// this.img_goods.source = item.data.icon ; 
-		this.label_name.text = item.data.name ; 
+		this.label_name.text = item.name ; 
 
 
 		if (!this.m_goodsArm) {
@@ -68,8 +69,8 @@ public img_mask:eui.Image;
 
 	private closeItem(evt:egret.Event): void {
 		let id: number = evt.data.id ; 
-		let item: ItemData = this.data.item; 
-		if (id == item.data.idx) {
+		let item: StoreShopInfo = this.data; 
+		if (id == item.key) {
 			// this.img_mask.visible = true ; 
 			this.m_goodsArm.animation.stop();
 			this.m_goodsArm.animation.play(this.m_curStopArmName);

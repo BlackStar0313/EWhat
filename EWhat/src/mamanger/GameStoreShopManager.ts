@@ -35,6 +35,43 @@ class GameStoreShopInfoManager {
 	public GetTagHash(): number { return this.mTagHash; }
 	public GetShopHash(): number { return this.mShopHash; }
 
+	public IsShopInfoExist(arr: Array<StoreShopInfo>, shopInfo: StoreShopInfo): boolean {
+		for (let i = 0 ; i < arr.length ; ++i) {
+			if (arr[i].key == shopInfo.key) {
+				return true ;
+			}
+		}
+		return false ;
+	}
+
+	public GetShopInfoListByTag(tag: number ): Array<StoreShopInfo> {
+		let arr: Array<StoreShopInfo> = [] ; 
+		for (let i = 0 ; i < this.mShopInfoList.length; ++i) {
+			let shopInfo: StoreShopInfo = this.mShopInfoList[i];
+			for (let iShop = 0 ; iShop < shopInfo.tagArray.length ; ++ iShop) {
+				if (tag == shopInfo.tagArray[iShop] && this.IsShopInfoExist(arr , shopInfo) == false ) {
+					arr.push(shopInfo);
+				}
+			}
+		}
+		return arr ; 
+	}
+
+	public GetShopInfoListByTagArray(tagArr: Array<number>): Array<StoreShopInfo> {
+		let arr: Array<StoreShopInfo> = [] ; 
+		for (let i = 0 ; i < tagArr.length; ++i) {
+			let shopList = this.GetShopInfoListByTag(tagArr[i]);
+			if (shopList.length > 0) {
+				for (let iShop = 0 ; iShop < shopList.length ; ++iShop) {
+					if (this.IsShopInfoExist(arr , shopList[iShop]) == false ) {
+						arr.push(shopList[iShop]);
+					}
+				}
+			}
+		}
+		return arr ; 
+	}
+
 	public GetShopInfo(key: number): StoreShopInfo {
 		for (let i = 0 ;i < this.mShopInfoList.length ; ++i ) {
 			if (key == this.mShopInfoList[i].key) {
