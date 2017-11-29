@@ -13,7 +13,8 @@
     "ShopInfoLayer": "resource/eui_skins/ShopInfoLayer.exml",
     "EditShopTagLayer": "resource/eui_skins/EditShopTagLayer.exml",
     "MainLayer": "resource/eui_skins/MainLayer.exml",
-    "RandChooseTagLayer": "resource/eui_skins/RandChooseTagLayer.exml"
+    "RandChooseTagLayer": "resource/eui_skins/RandChooseTagLayer.exml",
+    "RandResultLayer": "resource/eui_skins/RandResultLayer.exml"
   },
   "autoGenerateExmlsList": true,
   "exmls": [
@@ -26,6 +27,7 @@
     "resource/eui_skins/RandCell.exml",
     "resource/eui_skins/RandChooseTagLayer.exml",
     "resource/eui_skins/RandLayer.exml",
+    "resource/eui_skins/RandResultLayer.exml",
     "resource/eui_skins/ShopCell.exml",
     "resource/eui_skins/ShopInfoLayer.exml",
     "resource/eui_skins/ShopPoolLayer.exml",

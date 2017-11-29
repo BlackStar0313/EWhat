@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,description_json,ba6_s1_png,ba6_s2_png,ba6_s3_png,ba6_s4_png,ba6_s5_png,data_json,btn27_s0_png,btn27_s1_png,btn27_s3_png,btn27_s2_png,btn27_s4_png,btn27_s5_png,btn27_s6_png,btn27_s7_png,btn27_s8_png,btn27_s9_png,btn27_s10_png,btn27_s11_png,btn27_s12_png,btn27_s13_png,ui_mask_png,db_evolve_burn_tex_png,db_evolve_burn_ske_json,db_btn_tex_json,db_btn_ske_json,db_btn_tex_png,db_evolve_burn_tex_json,btn_random_off_png,btn_random_on_png,b_close1_grey_png,b_close1_png,btn_config_png,btn_config_s1_png,ui_add_png,bg_layer_png,tag_1_png,tag_2_png,tag_3_png,tag_4_png,bg_cell_PK_on_png",
+			"keys": "bg_jpg,description_json,ba6_s1_png,ba6_s2_png,ba6_s3_png,ba6_s4_png,ba6_s5_png,data_json,btn27_s0_png,btn27_s1_png,btn27_s3_png,btn27_s2_png,btn27_s4_png,btn27_s5_png,btn27_s6_png,btn27_s7_png,btn27_s8_png,btn27_s9_png,btn27_s10_png,btn27_s11_png,btn27_s12_png,btn27_s13_png,ui_mask_png,db_evolve_burn_tex_png,db_evolve_burn_ske_json,db_btn_tex_json,db_btn_ske_json,db_btn_tex_png,db_evolve_burn_tex_json,btn_random_off_png,btn_random_on_png,b_close1_grey_png,b_close1_png,btn_config_png,btn_config_s1_png,ui_add_png,bg_layer_png,tag_1_png,tag_2_png,tag_3_png,tag_4_png,bg_cell_PK_on_png,good_time_mp3",
 			"name": "preload"
 		}
 	],
@@ -400,6 +400,11 @@
 			"url": "assets/ui/bg_cell_PK_on.png",
 			"type": "image",
 			"name": "bg_cell_PK_on_png"
+		},
+		{
+			"url": "assets/sounds/good_time.mp3",
+			"type": "sound",
+			"name": "good_time_mp3"
 		}
 	]
 }

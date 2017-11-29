@@ -35,6 +35,15 @@ public btn_config:eui.Button;
 		this.btn_start.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.btn_config.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
 		this.btn_back.addEventListener(egret.TouchEvent.TOUCH_END, this.handleTouch, this);
+
+		NotifyCenter.getInstance().addEventListener(LocalEvents.START_RAND  , this.handleStartRand , this );
+		NotifyCenter.getInstance().addEventListener(LocalEvents.STOP_RAND , this.handleStopRand , this );
+
+		this.addEventListener(egret.Event.REMOVED_FROM_STAGE, function () {
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.START_RAND , this.handleStartRand , this );
+			NotifyCenter.getInstance().removeEventListener(LocalEvents.STOP_RAND  , this.handleStopRand , this );
+		}, this);
+
 		this.RefreshShow();
 	}
 
@@ -104,7 +113,7 @@ public btn_config:eui.Button;
 				if (UserCenter.getInstance().isFirstTimeIn) {
 					UserCenter.getInstance().isFirstTimeIn = false ; 
 					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.RESTART) ;
-					this.startRandTimer();
+					NotifyCenter.getInstance().dispatchEventWith(LocalEvents.START_RAND);
 					return ;
 				} 
 
@@ -112,10 +121,8 @@ public btn_config:eui.Button;
 					return ; 
 				}
 
-
-
 				this.RefreshShow();
-				this.startRandTimer();
+				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.START_RAND);
 				break;
 			}
 
@@ -127,6 +134,8 @@ public btn_config:eui.Button;
 			}
 
 			case this.btn_back: {
+				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.STOP_RAND);
+				UserCenter.getInstance().isFirstTimeIn = true ; 
 				LayerManager.GetInstance().popLayer(this);
 
 				// let layer: RandChooseTagLayer = new RandChooseTagLayer();
@@ -143,10 +152,7 @@ public btn_config:eui.Button;
 
 	private startRandTimer(): void {
 		if (this.m_goodsList.length <= 1) {
-			if (this.m_randTimer) {
-				this.m_randTimer.stop();
-				this.m_randTimer = null ;
-			}
+			NotifyCenter.getInstance().dispatchEventWith(LocalEvents.STOP_RAND);
 			return ; 
 		}
 
@@ -160,11 +166,27 @@ public btn_config:eui.Button;
 				id: self.m_goodsList[randId]
 			} );
 			self.m_goodsList.splice(randId, 1) ;
-			self.m_randTimer = null ; 
 			self.startRandTimer();
 		}
 		,this ) ;
 		this.m_randTimer.start(); 
+	}
+
+	private handleStartRand(): void {
+		this.startRandTimer();
+		GTSoundEngine.getInstance().playMusic("good_time_mp3");
+	}
+
+	private handleStopRand(): void {
+		if (this.m_randTimer) {
+			this.m_randTimer.stop();
+			this.m_randTimer = null ;
+		}
+		GTSoundEngine.getInstance().stopMusic();
+
+
+		let layer: RandResultLayer = new RandResultLayer(this.m_goodsList[0]);
+		LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);		
 	}
 	
 }

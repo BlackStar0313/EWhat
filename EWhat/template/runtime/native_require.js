@@ -12,7 +12,7 @@ var game_file_list = [
 	"polyfill/promise.js",
 	"bin-debug/utils/BasicItemRenderer.js",
 	"bin-debug/utils/BasicLayer.js",
-	"bin-debug/game/layer/RandLayer.js",
+	"bin-debug/game/layer/ShopInfoLayer.js",
 	"bin-debug/data/ItemData.js",
 	"bin-debug/game/cell/RandCell.js",
 	"bin-debug/game/cell/ShopCell.js",
@@ -28,8 +28,9 @@ var game_file_list = [
 	"bin-debug/game/layer/EditShopTagLayer.js",
 	"bin-debug/game/layer/MainLayer.js",
 	"bin-debug/game/layer/RandChooseTagLayer.js",
+	"bin-debug/game/layer/RandLayer.js",
+	"bin-debug/game/layer/RandResultLayer.js",
 	"bin-debug/Constants.js",
-	"bin-debug/game/layer/ShopInfoLayer.js",
 	"bin-debug/game/layer/ShopPoolLayer.js",
 	"bin-debug/game/MainScene.js",
 	"bin-debug/game/UserCenter.js",
@@ -47,6 +48,8 @@ var game_file_list = [
 	"bin-debug/AssetAdapter.js",
 	"bin-debug/data/interface/ItemDataInterface.js",
 	"bin-debug/utils/GameLayerActionHelper.js",
+	"bin-debug/utils/GTLocalStorage.js",
+	"bin-debug/utils/GTSoundEngine.js",
 	//----auto game_file_list end----
 ];
 

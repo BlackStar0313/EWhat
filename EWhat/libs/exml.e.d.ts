@@ -16,6 +16,8 @@ declare class RandChooseTagLayerSkin extends eui.Skin{
 }
 declare class RandLayerSkin extends eui.Skin{
 }
+declare class RandResultLayerSkin extends eui.Skin{
+}
 declare class ShopCellSkin extends eui.Skin{
 }
 declare class ShopInfoLayerSkin extends eui.Skin{

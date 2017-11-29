@@ -11,6 +11,8 @@ class LocalEvents {
     public static SWITCH_TAG = "switch_tag";        //切换商店所属tag 
     public static SHOP_CHANGE_TAG = "shop_change_tag";  //商店tag刷新
     public static CHANGE_SHOP_NAME = "change_shop_name";    //修改商店的名字
+    public static START_RAND = "start_rand";           
+    public static STOP_RAND = "stop_rand";
 }
 
 

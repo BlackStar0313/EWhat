@@ -71,5 +71,10 @@
         "path": "game/layer/RandChooseTagLayer.ts",
         "class": "RandChooseTagLayer",
         "parentPath": ""
+    },
+    "160056b7566": {
+        "path": "game/layer/RandResultLayer.ts",
+        "class": "RandResultLayer",
+        "parentPath": ""
     }
 }
