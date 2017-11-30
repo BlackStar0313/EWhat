@@ -42,6 +42,13 @@ public img_mask:eui.Image;
 		this.img_mask.visible = false; 
 	}
 
+	public GetShopKey(): number {
+		if (this.data) {
+			return (<StoreShopInfo>(this.data)).key;
+		}
+		return -1 ;
+	}
+
 	protected dataChanged(): void {
 		let item: StoreShopInfo = this.data; 
 

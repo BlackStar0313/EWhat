@@ -79,7 +79,7 @@ public group_none:eui.Group;
 				LayerManager.GetInstance().popLayer(this);
 
 				let layer: MainLayer = new MainLayer();
-				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.BasicUIlayer);
 				break;
 			}
 

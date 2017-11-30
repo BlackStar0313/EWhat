@@ -23,7 +23,7 @@ class LayerManager {
 	private m_screenWidth:number = 0;
 	private m_screenheight:number = 0;
 
-	public openAction:boolean = false;//是否打开所有layer切换的动画效果
+	public openAction:boolean = true;//是否打开所有layer切换的动画效果
 	public constructor() {
 	}
 

@@ -47,7 +47,7 @@ public edit_name:eui.EditableText;
 
 				if (this.mIsBackToMain) {
 					let layer: MainLayer = new MainLayer();
-					LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+					LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.BasicUIlayer);
 				}
 				break;
 			}

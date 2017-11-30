@@ -134,7 +134,7 @@ public btn_config:eui.Button;
 			}
 
 			case this.btn_back: {
-				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.STOP_RAND);
+				NotifyCenter.getInstance().dispatchEventWith(LocalEvents.STOP_RAND , false , { isResult: false  });
 				UserCenter.getInstance().isFirstTimeIn = true ; 
 				LayerManager.GetInstance().popLayer(this);
 
@@ -142,7 +142,7 @@ public btn_config:eui.Button;
 				// LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 
 				let layer: MainLayer = new MainLayer();
-				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
+				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.BasicUIlayer);
 				break;
 			}
 			default:
@@ -152,7 +152,7 @@ public btn_config:eui.Button;
 
 	private startRandTimer(): void {
 		if (this.m_goodsList.length <= 1) {
-			NotifyCenter.getInstance().dispatchEventWith(LocalEvents.STOP_RAND);
+			NotifyCenter.getInstance().dispatchEventWith(LocalEvents.STOP_RAND , false , { isResult: true  });
 			return ; 
 		}
 
@@ -177,16 +177,27 @@ public btn_config:eui.Button;
 		GTSoundEngine.getInstance().playMusic("good_time_mp3");
 	}
 
-	private handleStopRand(): void {
+	private handleStopRand(evt: egret.Event): void {
 		if (this.m_randTimer) {
 			this.m_randTimer.stop();
 			this.m_randTimer = null ;
 		}
 		GTSoundEngine.getInstance().stopMusic();
 
+		let pos: egret.Point = null ; 
+		if (evt.data && evt.data.isResult) {
+			for (let i = 0 ; i < this.group_goods.$children.length ; ++i) {
+				let goodsCell: RandCell = <RandCell>this.group_goods.$children[i];
+				if (goodsCell && goodsCell.GetShopKey() == this.m_goodsList[0]) {
+					pos = goodsCell.localToGlobal();
+					break;
+				}
+			}
 
-		let layer: RandResultLayer = new RandResultLayer(this.m_goodsList[0]);
-		LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);		
+			let layer: RandResultLayer = new RandResultLayer(this.m_goodsList[0] , pos );
+			LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer, false );	
+		}
+	
 	}
 	
 }

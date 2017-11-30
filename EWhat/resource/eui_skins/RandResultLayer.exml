@@ -2,19 +2,22 @@
 <e:Skin class="RandResultLayerSkin" width="750" height="1206" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" >
 	<w:Config id="160056b7566" ></w:Config>
 	<e:Group left="0" right="0" top="0" bottom="0">
-		<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" left="0" right="0" top="0" bottom="0"/>
-		<e:Label id="label_title" text="吃这个了" y="136.42" size="50" horizontalCenter="0"/>
-		<e:Button id="btn_close" label="" x="626.5" y="42">
-			<e:skinName>
-			<e:Skin states="up,down,disabled">
-				<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
-				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-			</e:Skin>
-			</e:skinName>
-		</e:Button>
-		<e:Group id="group_shop" width="189.39" height="200" x="283" y="326" anchorOffsetX="0">
-			<e:Image id="icon_shop" source="bg_cell_PK_on_png" x="12.49" y="20"/>
-			<e:Label id="label_shop_name" text="Label" y="80.44" horizontalCenter="4.305000000000007"/>
+		<e:Group id="group_mask" left="0" right="0" top="0" bottom="0" x="0" y="0" scaleX="1" scaleY="1"/>
+		<e:Group id="group_bg" left="0" right="0" top="0" bottom="0">
+			<e:Image source="bg_layer_png" scale9Grid="17,15,42,42" width="614" x="75" height="778" y="137" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Label id="label_title" text="吃这个了" y="271.92" size="50" horizontalCenter="7" x="282" scaleX="1" scaleY="1"/>
+			<e:Button id="btn_close" label="" x="578.5" y="161.42" scaleX="1" scaleY="1">
+				<e:skinName>
+				<e:Skin states="up,down,disabled">
+					<e:Image width="100%" height="100%" source="b_close1_png" source.down="b_close1_grey_png" source.disabled="b_close1_grey_png"/>
+					<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+				</e:skinName>
+			</e:Button>
+		</e:Group>
+		<e:Group id="group_shop" width="160" height="160" x="295" y="414.44" anchorOffsetX="0">
+			<e:Image id="icon_shop" source="bg_cell_PK_on_png" x="0" y="0"/>
+			<e:Label id="label_shop_name" text="Label" y="58.44" horizontalCenter="4"/>
 		</e:Group>
 	</e:Group>
 </e:Skin>

@@ -178,6 +178,9 @@ class BasicLayer extends eui.Component implements  eui.UIComponent {
 			}
 			return;
 		}
+		else if (this.m_layerType == LAYER_TYPE.PopUpLayer && this.m_outActionType == LAYER_ACTION_TYPE.NO_ACTION) {
+			this.m_inActionType = LAYER_ACTION_TYPE.POP_IN;
+		}
 
 		switch (this.m_inActionType)
 		{
@@ -233,6 +236,9 @@ class BasicLayer extends eui.Component implements  eui.UIComponent {
 		{
 			this.Exit();
 			return;
+		}
+		else if (this.m_layerType == LAYER_TYPE.PopUpLayer && this.m_outActionType == LAYER_ACTION_TYPE.NO_ACTION) {
+			this.m_outActionType = LAYER_ACTION_TYPE.POP_OUT;
 		}
 
 		switch (this.m_outActionType)

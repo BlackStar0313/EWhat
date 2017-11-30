@@ -1,6 +1,7 @@
 // TypeScript file
 enum LAYER_ACTION_TYPE {
 	NO_ACTION = 0 ,
+	Custom , 
 	POP_IN , 		//弹出
 	POP_OUT ,		//消失
 	FADE_IN,		//渐现
@@ -64,7 +65,7 @@ class GameLayerActionHelper
 
     public static createPopOutAction(panel:any, callBackFunc:Function, thisObj:any)
     {
-        egret.Tween.get(panel).to({alpha:0,scaleX:0,scaleY:0,x:panel.x + panel.width/2,y:panel.y + panel.height/2},300)
+        egret.Tween.get(panel).to({alpha:0,scaleX:0,scaleY:0,x:panel.x + panel.width/2,y:panel.y + panel.height/2},300, egret.Ease.backIn)
             .call(
 			function (evt:egret.Event) {
 				if (callBackFunc && thisObj) {
