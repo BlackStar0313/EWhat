@@ -9,6 +9,7 @@ var game_file_list = [
 	"libs/modules/eui/eui.js",
 	"libs/modules/tween/tween.js",
 	"libs/modules/dragonBones/dragonBones.js",
+	"libs/modules/sqlLite/sqlLite.js",
 	"polyfill/promise.js",
 	"bin-debug/utils/BasicItemRenderer.js",
 	"bin-debug/utils/BasicLayer.js",
@@ -30,7 +31,7 @@ var game_file_list = [
 	"bin-debug/game/layer/RandChooseTagLayer.js",
 	"bin-debug/game/layer/RandLayer.js",
 	"bin-debug/game/layer/RandResultLayer.js",
-	"bin-debug/utils/GTSoundEngine.js",
+	"bin-debug/Constants.js",
 	"bin-debug/game/layer/ShopPoolLayer.js",
 	"bin-debug/game/MainScene.js",
 	"bin-debug/game/UserCenter.js",
@@ -49,7 +50,7 @@ var game_file_list = [
 	"bin-debug/data/interface/ItemDataInterface.js",
 	"bin-debug/utils/GameLayerActionHelper.js",
 	"bin-debug/utils/GTLocalStorage.js",
-	"bin-debug/Constants.js",
+	"bin-debug/utils/GTSoundEngine.js",
 	//----auto game_file_list end----
 ];
 

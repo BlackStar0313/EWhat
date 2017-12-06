@@ -26,6 +26,10 @@
     },
     {
       "name": "dragonbones"
+    },
+    {
+      "name": "sqlLite",
+      "path": "../thirdParty/sqlLite"
     }
   ]
 }
