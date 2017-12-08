@@ -64,7 +64,7 @@ public edit_name:eui.EditableText;
 		}
 
 		beforeShopInfo.name = text ; 
-		GameStoreShopInfoManager.GetInstance().StoreSingleShopInfoToLocal(beforeShopInfo);
+		GameStoreShopInfoManager.GetInstance().updateShopName(beforeShopInfo);
 		NotifyCenter.getInstance().dispatchEventWith(LocalEvents.CHANGE_SHOP_NAME  );
 		let str: string = "名字修改为" + text ; 
 		GameTipsActionHelper.ScreenTip(str, 34 , CONST_CONFIG.successColor);

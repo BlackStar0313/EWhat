@@ -9,10 +9,11 @@ var game_file_list = [
 	"libs/modules/eui/eui.js",
 	"libs/modules/tween/tween.js",
 	"libs/modules/dragonBones/dragonBones.js",
+	"libs/modules/sqlLite/sqlLite.js",
 	"polyfill/promise.js",
 	"bin-debug/utils/BasicItemRenderer.js",
 	"bin-debug/utils/BasicLayer.js",
-	"bin-debug/game/layer/ShopInfoLayer.js",
+	"bin-debug/game/layer/ShopPoolLayer.js",
 	"bin-debug/data/ItemData.js",
 	"bin-debug/game/cell/RandCell.js",
 	"bin-debug/game/cell/ShopCell.js",
@@ -30,8 +31,8 @@ var game_file_list = [
 	"bin-debug/game/layer/RandChooseTagLayer.js",
 	"bin-debug/game/layer/RandLayer.js",
 	"bin-debug/game/layer/RandResultLayer.js",
-	"bin-debug/utils/GTSoundEngine.js",
-	"bin-debug/game/layer/ShopPoolLayer.js",
+	"bin-debug/game/layer/ShopInfoLayer.js",
+	"bin-debug/Constants.js",
 	"bin-debug/game/MainScene.js",
 	"bin-debug/game/UserCenter.js",
 	"bin-debug/LoadingUI.js",
@@ -40,6 +41,8 @@ var game_file_list = [
 	"bin-debug/mamanger/DataManager.js",
 	"bin-debug/mamanger/DragonBonesConfig.js",
 	"bin-debug/mamanger/DragonBonesManager.js",
+	"bin-debug/mamanger/GameSqliteManager.js",
+	"bin-debug/mamanger/GameStoreShopBackup.js",
 	"bin-debug/mamanger/GameStoreShopManager.js",
 	"bin-debug/mamanger/LayerManager.js",
 	"bin-debug/mamanger/NotifyCenter.js",
@@ -49,7 +52,7 @@ var game_file_list = [
 	"bin-debug/data/interface/ItemDataInterface.js",
 	"bin-debug/utils/GameLayerActionHelper.js",
 	"bin-debug/utils/GTLocalStorage.js",
-	"bin-debug/Constants.js",
+	"bin-debug/utils/GTSoundEngine.js",
 	//----auto game_file_list end----
 ];
 
@@ -83,7 +86,7 @@ egret_native.egretStart = function () {
         //以下为自动修改，请勿修改
         //----auto option start----
 		entryClassName: "Main",
-		frameRate: 30,
+		frameRate: 60,
 		scaleMode: "showAll",
 		contentWidth: 750,
 		contentHeight: 1206,

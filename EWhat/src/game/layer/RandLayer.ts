@@ -141,8 +141,6 @@ public btn_config:eui.Button;
 				// let layer: RandChooseTagLayer = new RandChooseTagLayer();
 				// LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 
-				let layer: MainLayer = new MainLayer();
-				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.BasicUIlayer);
 				break;
 			}
 			default:

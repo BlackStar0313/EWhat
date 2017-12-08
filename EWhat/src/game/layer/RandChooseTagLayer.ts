@@ -82,9 +82,6 @@ protected childrenCreated():void
 			case this.btn_back:
 			{
 				LayerManager.GetInstance().popLayer(this);
-
-				let layer: MainLayer = new MainLayer();
-				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.BasicUIlayer);
 				break;
 			}
 

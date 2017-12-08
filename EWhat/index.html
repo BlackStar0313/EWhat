@@ -29,6 +29,7 @@
 	<script egret="lib" src="libs/modules/eui/eui.js" src-release="libs/modules/eui/eui.min.js"></script>
 	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
 	<script egret="lib" src="libs/modules/dragonBones/dragonBones.js" src-release="libs/modules/dragonBones/dragonBones.min.js"></script>
+	<script egret="lib" src="libs/modules/sqlLite/sqlLite.js" src-release="libs/modules/sqlLite/sqlLite.min.js"></script>
 	<!--modules_files_end-->
 
     <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
@@ -40,7 +41,7 @@
     <!--game_files_start-->
 	<script egret="game" src="bin-debug/utils/BasicItemRenderer.js"></script>
 	<script egret="game" src="bin-debug/utils/BasicLayer.js"></script>
-	<script egret="game" src="bin-debug/game/layer/ShopInfoLayer.js"></script>
+	<script egret="game" src="bin-debug/game/layer/ShopPoolLayer.js"></script>
 	<script egret="game" src="bin-debug/data/ItemData.js"></script>
 	<script egret="game" src="bin-debug/game/cell/RandCell.js"></script>
 	<script egret="game" src="bin-debug/game/cell/ShopCell.js"></script>
@@ -58,8 +59,8 @@
 	<script egret="game" src="bin-debug/game/layer/RandChooseTagLayer.js"></script>
 	<script egret="game" src="bin-debug/game/layer/RandLayer.js"></script>
 	<script egret="game" src="bin-debug/game/layer/RandResultLayer.js"></script>
-	<script egret="game" src="bin-debug/utils/GTSoundEngine.js"></script>
-	<script egret="game" src="bin-debug/game/layer/ShopPoolLayer.js"></script>
+	<script egret="game" src="bin-debug/game/layer/ShopInfoLayer.js"></script>
+	<script egret="game" src="bin-debug/Constants.js"></script>
 	<script egret="game" src="bin-debug/game/MainScene.js"></script>
 	<script egret="game" src="bin-debug/game/UserCenter.js"></script>
 	<script egret="game" src="bin-debug/LoadingUI.js"></script>
@@ -68,6 +69,8 @@
 	<script egret="game" src="bin-debug/mamanger/DataManager.js"></script>
 	<script egret="game" src="bin-debug/mamanger/DragonBonesConfig.js"></script>
 	<script egret="game" src="bin-debug/mamanger/DragonBonesManager.js"></script>
+	<script egret="game" src="bin-debug/mamanger/GameSqliteManager.js"></script>
+	<script egret="game" src="bin-debug/mamanger/GameStoreShopBackup.js"></script>
 	<script egret="game" src="bin-debug/mamanger/GameStoreShopManager.js"></script>
 	<script egret="game" src="bin-debug/mamanger/LayerManager.js"></script>
 	<script egret="game" src="bin-debug/mamanger/NotifyCenter.js"></script>
@@ -77,7 +80,7 @@
 	<script egret="game" src="bin-debug/data/interface/ItemDataInterface.js"></script>
 	<script egret="game" src="bin-debug/utils/GameLayerActionHelper.js"></script>
 	<script egret="game" src="bin-debug/utils/GTLocalStorage.js"></script>
-	<script egret="game" src="bin-debug/Constants.js"></script>
+	<script egret="game" src="bin-debug/utils/GTSoundEngine.js"></script>
 	<!--game_files_end-->
 </head>
 <body>
@@ -86,7 +89,7 @@
          data-entry-class="Main"
          data-orientation="auto"
          data-scale-mode="showAll"
-         data-frame-rate="30"
+         data-frame-rate="60"
          data-content-width="750"
          data-content-height="1206"
          data-show-paint-rect="false"

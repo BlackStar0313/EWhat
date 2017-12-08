@@ -21,23 +21,6 @@ class UserCenter {
 		//test code 
 		// asLocalStorage.getInstance().clearAll();
 
-		GameStoreShopInfoManager.GetInstance().ParseShopInfoFromeLocal();
-		GameStoreShopInfoManager.GetInstance().ParseTagInfoFromeLocal();
-
-		//test code 
-		// let tagArray = [];
-		// tagArray.push(1);
-		// tagArray.push(3);
-		// let node: StoreShopInfo =  { key: 0,
-		// 			name: "一号店", 
-		// 			tagArray: tagArray
-		// 		} ;
-		// GameStoreShopInfoManager.GetInstance().StoreSingleShopInfoToLocal(node);
-		// let shopList = GameStoreShopInfoManager.GetInstance().GetShopInfoList();
-		// for (let i = 0 ; i < shopList.length ; ++i) {
-		// 	console.log(" key is " + shopList[i].key + " name is " + shopList[i].name );
-		// }
-
-		// GameStoreShopInfoManager.GetInstance().RemoveShop(0);
+		GameStoreShopInfoManager.GetInstance().InitData();
 	}
 }

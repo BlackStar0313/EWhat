@@ -44,11 +44,6 @@ public edit_name:eui.EditableText;
 			case this.btn_close:
 			{
 				LayerManager.GetInstance().popLayer(this);
-
-				if (this.mIsBackToMain) {
-					let layer: MainLayer = new MainLayer();
-					LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.BasicUIlayer);
-				}
 				break;
 			}
 

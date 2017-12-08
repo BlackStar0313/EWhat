@@ -182,7 +182,7 @@ public btn_confirm:eui.Button;
 
 		let shopInfo: StoreShopInfo = GameStoreShopInfoManager.GetInstance().GetShopInfo(this.mShopKey);
 		shopInfo.tagArray = ownArr ; 
-		GameStoreShopInfoManager.GetInstance().StoreSingleShopInfoToLocal(shopInfo);
+		GameStoreShopInfoManager.GetInstance().updateShopTagInfo(shopInfo);
 	}
 
 	private onAddNewTag(evt: egret.Event): void {

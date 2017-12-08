@@ -8,4 +8,6 @@ class StoreInfoLocalHelper {
 	public static KeyMaxTagNum: string = "max_tag_num";
 	public static KeyTagHash: string = "tag_hash";		//tag的一个递增的Hash值.
 	public static keyShopHash: string = "shop_hash";	//shop的唯一递增的hash值
+
+	public static DB_SHOP: string = "DB_SHOP";
 }

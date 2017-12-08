@@ -10,13 +10,21 @@ interface StoreTagInfo {
 	name: string 
 };
 
+enum DB_SHOP_PARAM_ID {
+	id = 0 , 
+	name ,
+	tagArr 
+}
+
+enum DB_TAG_PARAM_ID {
+	id = 0 ,
+	name ,
+	img 
+}
+
 class GameStoreShopInfoManager {
 	private mShopInfoList: Array <StoreShopInfo> = [] ; 
 	private mTagInfoList: Array<StoreTagInfo> = [] ; 
-	private mMaxShopNum: number = 0 ;
-	private mMaxTagNum: number = 0 ; 
-	private mTagHash: number = 0 ; 
-	private mShopHash: number = 0 ; 
 
 	public static mInst: GameStoreShopInfoManager = null ; 
 	public constructor() {
@@ -32,8 +40,20 @@ class GameStoreShopInfoManager {
 	public GetShopInfoList(): Array <StoreShopInfo> { return this.mShopInfoList; }
 	public GetTagInfoList(): Array<StoreTagInfo> { return this.mTagInfoList; }
 
-	public GetTagHash(): number { return this.mTagHash; }
-	public GetShopHash(): number { return this.mShopHash; }
+	public GetTagHash(): number { return this.getMaxIdFromeTable("tag"); }
+	public GetShopHash(): number { return this.getMaxIdFromeTable("shop"); }
+
+	private getMaxIdFromeTable(tableName: string) {
+		let idx: number = 1 ;
+		let str: string = "SELECT MAX(id) FROM %s".format(tableName);
+		let shopInfoArray = SqlLite.exec(str);
+
+		if (shopInfoArray && shopInfoArray.length > 0) {
+			let data: Array<any> = shopInfoArray[0].values ;
+			idx = data[0][0] + 1;
+		}
+		return idx; 
+	}
 
 	public IsShopInfoExist(arr: Array<StoreShopInfo>, shopInfo: StoreShopInfo): boolean {
 		for (let i = 0 ; i < arr.length ; ++i) {
@@ -112,31 +132,29 @@ class GameStoreShopInfoManager {
 		return this.GetTagInfo(tag) == null ? false : true ;
 	}
 
-	//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	public ParseShopInfoFromeLocal(): void {
-		//parse tag hash ;
-		this.mShopHash = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.keyShopHash);
-		this.mShopHash = this.mShopHash ? this.mShopHash : 0 ;
+	public InitData(): void {
+		GameSqliteHelper.GetInstance().InitDb();
+		this.DumpAllShopInfo();
+		this.DumpAllTagInfo();
+	}
 
-		this.mShopInfoList = [];
-		this.mMaxShopNum = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.KeyMaxShopNum);
-		this.mMaxShopNum = this.mMaxShopNum ? this.mMaxShopNum : 0 ; 
-
-		for (let i = 0 ; i < this.mShopHash; ++i) {
-			let dataStr: string = asLocalStorage.getInstance().getKeyString(StoreInfoLocalHelper.KeyStoreShop + i);
-			if(dataStr && dataStr.length>0) {
-				let dataArray: Array<string> = dataStr.split(",");
-
+	private DumpAllShopInfo(): void {
+		SqlLite.exec("CREATE TABLE IF NOT EXISTS shop( id integer,name text,tagArry text);");
+		
+		let shopInfoArray: any = SqlLite.exec("SELECT * FROM shop;");
+		if (shopInfoArray && shopInfoArray.length > 0) {
+			let data: Array<any> = shopInfoArray[0].values ;
+			for (let i = 0 ; i < data.length ; ++i) {
 				let tagArray: Array<number> = [] ;
-				let strTagArray: Array<string> = dataArray[2].split("&");
+				let strTagArray: Array<string> = data[i][2].split(",");
 				for (let i = 0 ; i < strTagArray.length ; ++i) {
 					tagArray.push(parseInt(strTagArray[i]) );
 				}
 
 				let node: StoreShopInfo =  
 				{
-					key: parseInt(dataArray[0]),
-					name: dataArray[1], 
+					key: parseInt(data[i][0]),
+					name: data[i][1], 
 					tagArray: tagArray
 				} ;
 				this.mShopInfoList.push(node);
@@ -146,82 +164,66 @@ class GameStoreShopInfoManager {
 		}
 	}
 
-	public StoreAllShopInfoToLocal(): void {
-		for (let i = 0 ; i < this.mShopInfoList.length ; ++i) {
-			this.StoreSingleShopInfoToLocal(this.mShopInfoList[i]);
-			let str = this.generateShopStr(this.mShopInfoList[i]);
-			asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreShop + this.mShopInfoList[i].key , str);
-		}
-
-		if (this.mShopInfoList.length > this.mMaxShopNum) {
-			this.mMaxShopNum = this.mShopInfoList.length;
-			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , this.mMaxShopNum);
+	private DumpAllTagInfo(): void {
+		SqlLite.exec("CREATE TABLE IF NOT EXISTS tag( id integer,name text,img text);");
+		
+		let tagInfoArray: any = SqlLite.exec("SELECT * FROM tag;");
+		if (tagInfoArray && tagInfoArray.length > 0) {
+			let data: Array<any> = tagInfoArray[0].values ;
+			for (let i = 0 ; i < data.length ; ++i) {
+				let node: StoreTagInfo =  
+				{
+					tag: parseInt(data[i][0]),
+					name: data[i][1], 
+					img: data[i][2]
+				} ;
+				this.mTagInfoList.push(node);
+			}
 		}
 	}
 
 	public StoreSingleShopInfoToLocal(node: StoreShopInfo): void {
-		let str = this.generateShopStr(node);
-		asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreShop + node.key, str);
-
-		if (!this.IsContainShop(node.key)) {
+		if (this.IsInfoExistDb("shop" , node.key) == false) {
+			let arrStr = this.generateShopTagArrStr(node.tagArray);
+			let str: string = "INSERT INTO shop VALUES (%d,'%s','%s');".format(node.key, node.name , arrStr);
+			SqlLite.exec(str);
+			GameSqliteHelper.GetInstance().StoreDb();
 			this.mShopInfoList.push(node);
-			++this.mMaxShopNum;
-			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , this.mMaxShopNum);
-
-			++this.mShopHash;
-			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.keyShopHash , this.mShopHash);
 		}
 	}
 
-
-	//商店信息，存储本地，用","区分字段，用"&"区分商店所属tag
-	// "key,name,1&2&3&4 "
-	private generateShopStr(node: StoreShopInfo): string {
-		let str: string = "" ;
-		str += node.key + ',';
-		str += node.name + ',';
-
-		let strTag = "";
-		for (let i = 0 ; i < node.tagArray.length ; ++i) {
-			strTag += node.tagArray[i];
-			if (i != node.tagArray.length - 1) {
-				strTag += "&";
-			}
+	public StoreTagToLocal(tagInfo: StoreTagInfo): void {
+		if (this.IsInfoExistDb("tag" , tagInfo.tag) == false) {
+			let str: string = "INSERT INTO tag VALUES (%d,'%s','%s');".format(tagInfo.tag, tagInfo.name , tagInfo.img);
+			SqlLite.exec(str);
+			GameSqliteHelper.GetInstance().StoreDb();
+			this.mTagInfoList.push(tagInfo);
 		}
-		str += strTag ;
-
-		egret.log("~~~~~~~  generateShopStr : " ,str);
-		return str ; 
-	}
-
-	public ClearAllShopInfoFromLocal():void {
-		for (let i = 0 ; i < this.mShopInfoList.length ; ++i) {
-			asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreShop + this.mShopInfoList[i].key , "");
-		}
-		this.mShopInfoList = [];
-
-		this.mMaxShopNum = 0 ;
-		asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , 0);
 	}
 
 	public RemoveShop(key: number ): void {
-		let isFind: boolean = false ; 
-		for (let i = 0 ;i < this.mShopInfoList.length ; ++i ) {
-			let shopNode: StoreShopInfo = this.mShopInfoList[i];
-			if (shopNode.key == key) {
-				this.mShopInfoList.splice(i , 1 );
-				isFind = true ;
-				break;
-			}
-		}
+		let str: string = "DELETE FROM shop where id = %d;".format(key);
+		SqlLite.exec(str);
+		GameSqliteHelper.GetInstance().StoreDb();
+	}
 
-		if (isFind) {
-			asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreShop + key, "");
+	public RemoveTag(tag: number ): void {
+		let str: string = "DELETE FROM tag where id = %d;".format(tag);
+		SqlLite.exec(str);
+		GameSqliteHelper.GetInstance().StoreDb();
+	}
 
-			--this.mMaxShopNum;
-			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxShopNum , this.mMaxShopNum);
-		}
+	public updateShopTagInfo(shopNode: StoreShopInfo): void {
+		let arrStr = this.generateShopTagArrStr(shopNode.tagArray);
+		let str: string = "UPDATE shop SET tagArry = '%s' where id = %d ;".format(arrStr , shopNode.key);
+		SqlLite.exec(str);
+		GameSqliteHelper.GetInstance().StoreDb();
+	}
 
+	public updateShopName(shopNode: StoreShopInfo): void {
+		let str: string = "UPDATE shop SET name = '%s' where id = %d ;".format(shopNode.name , shopNode.key);
+		SqlLite.exec(str);
+		GameSqliteHelper.GetInstance().StoreDb();
 	}
 
 	public RemoveTagOfShop(shopKey: number , tag:number ): void {
@@ -233,6 +235,7 @@ class GameStoreShopInfoManager {
 						if (shopNode.tagArray.length > 1) {
 							shopNode.tagArray.splice(iTag , 1);
 							this.StoreSingleShopInfoToLocal(shopNode);
+							this.updateShopTagInfo(shopNode);
 							return ;
 						}
 						else {
@@ -245,80 +248,39 @@ class GameStoreShopInfoManager {
 			}
 		}
 	}
-	//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-	//<<<<<<<<<<<<<<<<<<<<<<
-	public ParseTagInfoFromeLocal(): void {
-		//parse tag hash ;
-		this.mTagHash = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.KeyTagHash);
-		this.mTagHash = this.mTagHash ? this.mTagHash : 0 ;
-
-
-		this.mTagInfoList = [];
-		this.mMaxTagNum = asLocalStorage.getInstance().getKeyInt(StoreInfoLocalHelper.KeyMaxTagNum);
-		this.mMaxTagNum = this.mMaxTagNum ? this.mMaxTagNum : 0 ; 
-		for (let i = 0 ; i < this.mTagHash; ++i) {
-			let dataStr: string = asLocalStorage.getInstance().getKeyString(StoreInfoLocalHelper.KeyStoreTag + i);
-			if(dataStr && dataStr.length>0) {
-				let dataArray: Array<string> = dataStr.split(",");
-
-				let node: StoreTagInfo =  
-				{
-					tag: parseInt(dataArray[0]),
-					img: dataArray[1], 
-					name: dataArray[2]
-				} ;
-				this.mTagInfoList.push(node);
+	private generateShopTagArrStr(tagArr: Array<number>): string {
+		let strArr: string = "";
+		for (let i = 0 ; i < tagArr.length ; ++i) {
+			strArr += tagArr[i] ; 
+			if (i != tagArr.length-1) {
+				strArr += ",";
 			}
 		}
-
-	
+		return strArr;
 	}
 
-	public StoreTagToLocal(tagInfo: StoreTagInfo): void {
-		let str = this.generateTagStr(tagInfo);
-		asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreTag + tagInfo.tag , str);
 
-		if (!this.IsContainTag(tagInfo.tag)) {
-			this.mTagInfoList.push(tagInfo);
-			++this.mMaxTagNum;
-			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxTagNum , this.mMaxTagNum);
-
-			++this.mTagHash;
-			asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyTagHash , this.mTagHash);
+	private IsInfoExistDb(tableName: string , id: number): boolean {
+		let execStr: string = "SELECT * FROM %s WHERE id = %d;".format(tableName , id) ; 
+		let shopInfoArray: Uint8Array = SqlLite.exec(execStr);
+		if (shopInfoArray && shopInfoArray.length > 0) {
+			return true ;
 		}
+		return false ;
 	}
 
-	private generateTagStr(node: StoreTagInfo): string {
-		let str: string = "" ;
-		str += node.tag + ',';
-		str += node.img + ',';
-		str += node.name ;
-		return str ; 
+	public ClearAllShopInfoFromLocal():void {
+		SqlLite.exec("DROP TABLE shop;");
+		this.DumpAllShopInfo();
+		GameSqliteHelper.GetInstance().StoreDb();
 	}
 
 	public ClearAllTagInfoFromLocal():void {
-		for (let i = 0 ; i < this.mTagInfoList.length ; ++i) {
-			asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreTag + this.mTagInfoList[i].tag, "");
-		}
-		this.mTagInfoList = [];
-
-		this.mMaxTagNum = 0 ;
-		asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxTagNum , 0);
+		SqlLite.exec("DROP TABLE tag;");
+		this.DumpAllTagInfo();
+		GameSqliteHelper.GetInstance().StoreDb();
 	}
-
-	public RemoveTag(tag: number ): void {
-		for (let i = 0 ;i < this.mTagInfoList.length ; ++i ) {
-			if (tag == this.mTagInfoList[i].tag) {
-				this.mTagInfoList.splice(i , 1 );
-			}
-		}
-		asLocalStorage.getInstance().setKeyString(StoreInfoLocalHelper.KeyStoreTag + tag, "");
-
-		--this.mMaxTagNum;
-		asLocalStorage.getInstance().setKeyNumber(StoreInfoLocalHelper.KeyMaxTagNum , this.mMaxTagNum);
-	}
-	//>>>>>>>>>>>>>>>>>>>>>
 
 	public ClearAll(): void {
 		this.ClearAllShopInfoFromLocal();

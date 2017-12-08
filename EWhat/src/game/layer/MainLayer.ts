@@ -43,8 +43,6 @@ public btn_shop:eui.Button;
 		{
 			case this.btn_add:
 			{
-				LayerManager.GetInstance().popLayer(this);
-
 				let layer: AddShopLayer = new AddShopLayer("", true );
 				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;
@@ -60,17 +58,13 @@ public btn_shop:eui.Button;
 
 			case this.btn_shop:
 			{
-				LayerManager.GetInstance().popLayer(this);
-
 				let layer: ShopPoolLayer = new ShopPoolLayer();
 				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;
 			}
 
 			case this.btn_start:
-			{
-				LayerManager.GetInstance().popLayer(this);
-				
+			{				
 				let layer: RandChooseTagLayer = new RandChooseTagLayer();
 				LayerManager.GetInstance().pushLayer(layer, LAYER_TYPE.PopUpLayer);
 				break;

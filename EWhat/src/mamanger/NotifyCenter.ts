@@ -13,6 +13,8 @@ class LocalEvents {
     public static CHANGE_SHOP_NAME = "change_shop_name";    //修改商店的名字
     public static START_RAND = "start_rand";           
     public static STOP_RAND = "stop_rand";
+
+    public static DB_DATA = "db_data";
 }
 
 
